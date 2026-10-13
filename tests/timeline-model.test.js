@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   SEGMENT_LEN, buildSchedule, stateAt, ease, progressOf, islandProgress, scrollStatus, unrollAt,
   markerStatus, fullViewBox, focusViewBox, lerpViewBox, cameraAt, boatAt, anchorFractions,
-  cardAt, chartFadeAt, letterAt, hashForState
+  cardAt, chartFadeAt, letterAt, hashForState, stripViewBox
 } from '../js/timeline-model.js';
 import { ISLANDS } from '../js/layout.js';
 
@@ -99,6 +99,19 @@ test('focus view keeps the island at 28% from the left and matches the aspect', 
   assert.ok(Math.abs(v.w / v.h - 16 / 9) < 1e-9);
   assert.ok(Math.abs((ISLANDS[0].cx - v.x) / v.w - 0.28) < 1e-9);
   assert.deepEqual(lerpViewBox({ x: 0, y: 0, w: 10, h: 10 }, { x: 10, y: 10, w: 20, h: 20 }, 0.5), { x: 5, y: 5, w: 15, h: 15 });
+});
+
+test('strip view centres the whole island in a wide, short strip', () => {
+  for (const isl of ISLANDS) {
+    for (const aspect of [3.2, 1.6, 0.9]) {
+      const v = stripViewBox(isl, aspect);
+      assert.ok(Math.abs(v.w / v.h - aspect) < 1e-9);
+      assert.ok(Math.abs(v.x + v.w / 2 - isl.cx) < 1e-9);
+      assert.ok(Math.abs(v.y + v.h / 2 - isl.cy) < 1e-9);
+      const halfW = isl.R * 1.35 * 1.45, halfH = isl.R * 0.82 * 1.45;
+      assert.ok(v.w / 2 >= halfW - 1e-9 && v.h / 2 >= halfH - 1e-9, `${isl.id} @${aspect}`);
+    }
+  }
 });
 
 test('camera is continuous at segment boundaries', () => {

@@ -18,13 +18,13 @@ export function zoomFontSize(island, lines) {
   return +Math.min(island.R * 0.32, (1.6 * island.R * SX) / (longest * 0.92)).toFixed(2);
 }
 
-export function labelsMarkup(island, title) {
+export function labelsMarkup(island, title, islandWord = 'Island') {
   const lines = splitTitle(title);
   const fullSize = Math.round(island.R * 0.3);
   const zoomSize = zoomFontSize(island, lines);
   const fullTop = island.cy - ((lines.length - 1) * fullSize * 1.05) / 2;
   const full = `<text class="label-full" x="${island.cx}" y="${(fullTop - fullSize * 0.55).toFixed(1)}" text-anchor="middle">`
-    + `<tspan class="num" x="${island.cx}" font-size="7.5">ISLAND ${island.num}</tspan>`
+    + `<tspan class="num" x="${island.cx}" font-size="7.5">${escapeHTML(String(islandWord).toUpperCase())} ${island.num}</tspan>`
     + lines.map((l, i) => `<tspan class="name" x="${island.cx}" dy="${i === 0 ? fullSize * 0.95 : fullSize * 1.05}" font-size="${fullSize}">${escapeHTML(l)}</tspan>`).join('')
     + '</text>';
   const zoomTop = island.cy - ((lines.length - 1) * zoomSize * 1.3) / 2 + zoomSize * 0.35;
@@ -44,11 +44,11 @@ function iconMarkup([x, y], j) {
     + '</g>';
 }
 
-function islandMarkup(island, title, count) {
+function islandMarkup(island, title, count, islandWord) {
   const ripples = [3, 2, 1].map((j) => `<path class="ripple" d="${blobPath(island.cx, island.cy, island.R + j * 11, island.k, SX, SY)}" opacity="${(0.2 + 0.1 * (3 - j)).toFixed(2)}"/>`).join('');
   const coast = `<path class="coast" d="${blobPath(island.cx, island.cy, island.R, island.k, SX, SY)}"/>`;
   const icons = islandScrollSlots(island, count).map(iconMarkup).join('');
-  return `<g class="island" data-island="${island.id}">${ripples}${coast}<g class="labels">${labelsMarkup(island, title)}</g><g class="icons">${icons}</g></g>`;
+  return `<g class="island" data-island="${island.id}">${ripples}${coast}<g class="labels">${labelsMarkup(island, title, islandWord)}</g><g class="icons">${icons}</g></g>`;
 }
 
 const COMPASS_MARKUP = `<g class="compass" transform="translate(${COMPASS.x} ${COMPASS.y})">`
@@ -70,10 +70,10 @@ function excludeSounding(x, y) {
   return nearIsland || (x < 410 && y < 310) || Math.hypot(x - COMPASS.x, y - COMPASS.y) < 105;
 }
 
-export function chartSVG({ titles = {}, scrollCounts = {}, harbourLabel = '' }) {
+export function chartSVG({ titles = {}, scrollCounts = {}, harbourLabel = '', islandWord = 'Island' }) {
   const rhumbs = rhumbLines(COMPASS.x, COMPASS.y).map((d) => `<path d="${d}"/>`).join('');
   const depth = soundings({ exclude: excludeSounding }).map((s) => `<text x="${s.x}" y="${s.y}">${s.v}</text>`).join('');
-  const islands = ISLANDS.map((isl) => islandMarkup(isl, titles[isl.id] ?? '', scrollCounts[isl.id] ?? 0)).join('');
+  const islands = ISLANDS.map((isl) => islandMarkup(isl, titles[isl.id] ?? '', scrollCounts[isl.id] ?? 0, islandWord)).join('');
   const route = catmullRomPath(ROUTE_POINTS);
   return `<svg id="chart" class="chart" viewBox="0 0 ${VIEW.w} ${VIEW.h}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">`
     + `<g class="chart-art"><g class="rhumbs">${rhumbs}</g><g class="soundings">${depth}</g>${COMPASS_MARKUP}`
@@ -84,10 +84,10 @@ export function chartSVG({ titles = {}, scrollCounts = {}, harbourLabel = '' }) 
     + '</svg>';
 }
 
-export function setChartLabels(svgEl, titles, harbourLabel) {
+export function setChartLabels(svgEl, titles, harbourLabel, islandWord = 'Island') {
   ISLANDS.forEach((isl) => {
     const g = svgEl.querySelector(`.island[data-island="${isl.id}"] .labels`);
-    if (g) g.innerHTML = labelsMarkup(isl, titles[isl.id] ?? '');
+    if (g) g.innerHTML = labelsMarkup(isl, titles[isl.id] ?? '', islandWord);
   });
   const harbour = svgEl.querySelector('.harbour-label');
   if (harbour) harbour.textContent = harbourLabel;

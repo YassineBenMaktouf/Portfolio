@@ -1,1 +1,33 @@
-/* chart — filled in Task 8 */
+.chart-root { position: absolute; inset: 0; }
+.chart { width: 100%; height: 100%; display: block; transition: opacity 0.25s linear; }
+.chart.is-switching { opacity: 0.4; transition: none; }
+.rhumbs path { stroke: var(--rule); stroke-width: 0.7; fill: none; }
+.soundings text { font: 9px var(--font-mono); fill: var(--sounding); }
+.ripple { fill: none; stroke: var(--ink); stroke-width: 0.6; }
+.coast { fill: var(--land); stroke: var(--ink); stroke-width: 1.6; }
+.label-full { font-family: var(--font-display); fill: var(--ink); opacity: calc(1 - var(--zoom-mix, 0)); }
+.label-full .num { font-family: var(--font-mono); fill: var(--brass-dark); letter-spacing: 0.22em; }
+.label-full .name { font-style: italic; }
+.label-zoom { font-family: var(--font-display); fill: var(--ink-name); letter-spacing: 0.2em; opacity: var(--zoom-mix, 0); }
+.route { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 2 6; }
+.route-done { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 0 99999; }
+.compass-ring { fill: none; stroke: var(--ink); stroke-width: 1; }
+.compass-ring-brass { fill: none; stroke: var(--brass); stroke-width: 0.8; }
+.compass-ink { fill: var(--ink); }
+.compass-brass { fill: var(--brass); }
+.compass-n { font-family: var(--font-display); font-size: 16px; fill: var(--ink); }
+.harbour-label { font-family: var(--font-display); font-style: italic; font-size: 14px; fill: var(--ink-2); }
+.boat .hull { fill: var(--ink); }
+.boat .sail-main { fill: var(--brass); }
+.boat .sail-jib { fill: var(--ink); opacity: 0.75; }
+.scroll-icon { transition: opacity 0.35s ease; }
+.scroll-icon .paper { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.scroll-icon .rod { fill: var(--roller); }
+.scroll-icon .halo { fill: var(--brass); opacity: 0; transition: opacity 0.3s; }
+.scroll-icon .tick { fill: none; stroke: var(--brass-dark); stroke-width: 2; opacity: 0; }
+.scroll-icon[data-status="hidden"] { opacity: 0; }
+.scroll-icon[data-status="next"] { opacity: 1; }
+.scroll-icon[data-status="open"] { opacity: 1; }
+.scroll-icon[data-status="open"] .halo { opacity: 0.25; }
+.scroll-icon[data-status="read"] { opacity: 0.45; }
+.scroll-icon[data-status="read"] .tick { opacity: 1; }

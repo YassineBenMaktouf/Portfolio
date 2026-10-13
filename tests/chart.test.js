@@ -42,6 +42,14 @@ test('titles are escaped and zoom labels are uppercase', () => {
   assert.ok(!markup.includes('<b>'));
 });
 
+test('the small island numeral label uses the translated word', () => {
+  assert.ok(labelsMarkup(ISLANDS[1], 'Formation', 'Île').includes('ÎLE II'));
+  assert.ok(labelsMarkup(ISLANDS[1], 'Education').includes('ISLAND II'));
+  const svg = chartSVG({ titles, scrollCounts, harbourLabel: 'x', islandWord: 'Île' });
+  assert.ok(svg.includes('ÎLE IV'));
+  assert.ok(!svg.includes('ISLAND'));
+});
+
 test('missing scroll count draws no icons for that island', () => {
   const svg = chartSVG({ titles, scrollCounts: { about: 1 }, harbourLabel: 'x' });
   assert.equal((svg.match(/class="scroll-icon"/g) || []).length, 1);

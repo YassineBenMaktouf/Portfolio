@@ -1,4 +1,4 @@
-import { VIEW, SX } from './layout.js';
+import { VIEW, SX, SY } from './layout.js';
 
 export const SEGMENT_LEN = { landing: 0.6, unfold: 1, sail: 1, open: 0.5, hold: 1, close: 0.5, return: 1, end: 0.8 };
 
@@ -83,6 +83,15 @@ export function focusViewBox(island, aspect) {
   const w = islandW / 0.42;
   const h = w / aspect;
   return { x: island.cx - w * 0.28, y: island.cy - h * 0.5, w, h };
+}
+
+// Linear-mode map strip: the whole island (with its ripples) centred and fitted.
+export function stripViewBox(island, aspect) {
+  const halfW = island.R * SX * 1.45;
+  const halfH = island.R * SY * 1.45;
+  const w = Math.max(2 * halfW, 2 * halfH * aspect);
+  const h = w / aspect;
+  return { x: island.cx - w / 2, y: island.cy - h / 2, w, h };
 }
 
 // Exact at the ends so segment boundaries line up without floating-point drift.
