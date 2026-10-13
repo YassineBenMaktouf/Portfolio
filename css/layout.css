@@ -75,6 +75,7 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
 .title-card-static { position: relative; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
 .leg { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; display: flex; flex-direction: column; gap: 24px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .leg.is-visible { opacity: 1; transform: none; }
+.mode-linear .leg { scroll-margin-top: calc(42vh + 20px); }
 .leg-title { margin: 0; text-align: center; font-family: var(--font-display); font-weight: 400; font-size: 34px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-name); }
 .leg-num { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; color: var(--brass-dark); }
 @media (prefers-reduced-motion: reduce) {
@@ -90,6 +91,7 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
   .cv-icon { display: inline; font-size: 16px; }
   .cv-link { width: 44px; justify-content: center; padding: 0; }
   .mode-linear .stage { height: 250px; }
+  .mode-linear .leg { scroll-margin-top: 258px; }
   .markers { position: absolute; top: auto; left: 16px; bottom: 10px; z-index: 7; }
   .mode-linear .markers { position: sticky; top: 210px; margin: -40px 0 0 16px; }
   .title-card-inner { padding: 36px 18px 26px; }

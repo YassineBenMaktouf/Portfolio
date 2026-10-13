@@ -1,4 +1,5 @@
-import { loadContent, pick } from './content.js';
+import { loadContent, pick, ISLAND_IDS } from './content.js';
+import { initNav } from './nav.js';
 import { detectLanguage, safeStorage, createI18n, applyI18n } from './i18n.js';
 import { chartSVG, setChartLabels } from './chart.js';
 import { buildSchedule } from './timeline-model.js';
@@ -24,6 +25,8 @@ function labelMarkers(i18n, content) {
 }
 
 async function boot() {
+  // The voyage is a story: always start at the landing card unless a deep link says otherwise.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const { content, ui } = await loadContent();
   const storage = safeStorage(getLocalStorage());
   const browserLangs = navigator.languages?.length ? navigator.languages : [navigator.language];
@@ -86,6 +89,16 @@ async function boot() {
   } else {
     app.controller = createVoyage(app);
   }
+
+  initNav({
+    markersEl: document.getElementById('markers'),
+    ids: ISLAND_IDS,
+    schedule,
+    mode,
+    scrollToProgress: (p) => app.controller.scrollToProgress(p),
+    scrollToSection: (id) => document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
+  });
+  app.controller.refresh();   // re-render once so the markers and hash pick up the current state
 
   document.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-action="sail-again"]')) {

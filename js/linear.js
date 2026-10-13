@@ -23,6 +23,9 @@ export function initLinear({ stage, svg, linearEl, card, onIsland }) {
         icon.dataset.status = key === 'contact' || (typeof key === 'number' && i < key) ? 'read' : i === key ? 'next' : 'hidden';
       });
     });
+    document.querySelectorAll('#markers .marker').forEach((m, i) => {
+      m.dataset.status = key === 'contact' || (typeof key === 'number' && i < key) ? 'done' : i === key ? 'current' : 'upcoming';
+    });
     onIsland(key);
   };
 
