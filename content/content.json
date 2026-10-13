@@ -1,0 +1,101 @@
+{
+  "person": {
+    "name": "Yassine Ben Maktouf",
+    "role": { "en": "Actuary · Data Scientist", "fr": "Actuaire · Data Scientist" },
+    "photo": "",
+    "email": "your.email@example.com",
+    "linkedin": "https://www.linkedin.com/in/your-profile",
+    "github": "https://github.com/your-profile",
+    "cv": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" }
+  },
+  "islands": [
+    {
+      "id": "about", "kind": "about",
+      "title": { "en": "About me", "fr": "À propos" },
+      "scrolls": [
+        {
+          "bio": { "en": "[Three sentences — who you are, what drives you, and the first role you are looking for.]", "fr": "[Trois phrases — qui vous êtes, ce qui vous anime, et le premier poste recherché.]" },
+          "homePort": { "en": "[City, Country]", "fr": "[Ville, Pays]" },
+          "languages": { "en": "[French · English · Arabic]", "fr": "[Français · Anglais · Arabe]" },
+          "seeking": { "en": "[Actuarial analyst · 2026]", "fr": "[Analyste actuariel · 2026]" }
+        }
+      ]
+    },
+    {
+      "id": "education", "kind": "education",
+      "title": { "en": "Education", "fr": "Formation" },
+      "scrolls": [
+        {
+          "degree": { "en": "[Actuarial Science]", "fr": "[Science actuarielle]" },
+          "school": "[University name]", "city": { "en": "[City]", "fr": "[Ville]" }, "years": "[2021 – 2026]",
+          "summary": { "en": "[Focus of the degree, honours, thesis title.]", "fr": "[Axe du diplôme, mention, titre du mémoire.]" },
+          "courses": [{ "en": "Life contingencies", "fr": "Assurance vie" }, { "en": "Non-life pricing", "fr": "Tarification non-vie" }, { "en": "Reserving", "fr": "Provisionnement" }, "Solvency II"]
+        },
+        {
+          "degree": { "en": "[Data Science Engineering]", "fr": "[Ingénierie en science des données]" },
+          "school": "[School name]", "city": { "en": "[City]", "fr": "[Ville]" }, "years": "[2019 – 2024]",
+          "summary": { "en": "[Focus of the degree and main project.]", "fr": "[Axe du diplôme et projet principal.]" },
+          "courses": ["Machine learning", "Python", "SQL", { "en": "Statistics", "fr": "Statistiques" }]
+        }
+      ]
+    },
+    {
+      "id": "experience", "kind": "experience",
+      "title": { "en": "Experience", "fr": "Expérience" },
+      "scrolls": [
+        {
+          "role": { "en": "[Actuarial intern]", "fr": "[Stagiaire actuariat]" }, "company": "[Company]",
+          "city": { "en": "[City]", "fr": "[Ville]" }, "dates": { "en": "[MM YYYY – MM YYYY]", "fr": "[MM AAAA – MM AAAA]" },
+          "points": [
+            { "en": "[What you built or analysed.]", "fr": "[Ce que vous avez construit ou analysé.]" },
+            { "en": "[The method or tool you used.]", "fr": "[La méthode ou l'outil utilisé.]" },
+            { "en": "[The result or impact.]", "fr": "[Le résultat ou l'impact.]" }
+          ],
+          "tools": ["Python", "Excel / VBA"]
+        },
+        {
+          "role": { "en": "[Data science intern]", "fr": "[Stagiaire data science]" }, "company": "[Company]",
+          "city": { "en": "[City]", "fr": "[Ville]" }, "dates": { "en": "[MM YYYY – MM YYYY]", "fr": "[MM AAAA – MM AAAA]" },
+          "points": [
+            { "en": "[What you built or analysed.]", "fr": "[Ce que vous avez construit ou analysé.]" },
+            { "en": "[The method or tool you used.]", "fr": "[La méthode ou l'outil utilisé.]" },
+            { "en": "[The result or impact.]", "fr": "[Le résultat ou l'impact.]" }
+          ],
+          "tools": ["Python", "SQL"]
+        }
+      ]
+    },
+    {
+      "id": "projects", "kind": "project",
+      "title": { "en": "Projects", "fr": "Projets" },
+      "scrolls": [
+        { "title": { "en": "[Pricing project]", "fr": "[Projet de tarification]" }, "category": "actuarial", "summary": { "en": "[Two lines — problem, data, method, result.]", "fr": "[Deux lignes — problème, données, méthode, résultat.]" }, "illustration": "none", "tools": ["GLM", "R"], "links": [] },
+        { "title": { "en": "[Reserving project]", "fr": "[Projet de provisionnement]" }, "category": "actuarial", "summary": { "en": "[Two lines — problem, data, method, result.]", "fr": "[Deux lignes — problème, données, méthode, résultat.]" }, "illustration": "triangle", "tools": ["Chain ladder", "Bootstrap", "Python"], "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/your-profile" }] },
+        { "title": { "en": "[ML project]", "fr": "[Projet ML]" }, "category": "data", "summary": { "en": "[Two lines — what it predicts, data, result.]", "fr": "[Deux lignes — ce qu'il prédit, données, résultat.]" }, "illustration": "none", "tools": ["Python", "scikit-learn"], "links": [] },
+        { "title": { "en": "[Thesis]", "fr": "[Mémoire]" }, "category": "actuarial", "summary": { "en": "[Two lines — question, method, conclusion.]", "fr": "[Deux lignes — question, méthode, conclusion.]" }, "illustration": "none", "tools": ["[Method]"], "links": [] }
+      ]
+    },
+    {
+      "id": "skills", "kind": "skills",
+      "title": { "en": "Skills & certifications", "fr": "Compétences & certifications" },
+      "scrolls": [
+        {
+          "type": "skills",
+          "groups": [
+            { "name": { "en": "Actuarial", "fr": "Actuariat" }, "items": [{ "en": "Pricing", "fr": "Tarification" }, { "en": "Reserving", "fr": "Provisionnement" }, "IFRS 17", "Solvency II"] },
+            { "name": { "en": "Data science", "fr": "Science des données" }, "items": ["Python", "R", "SQL", "Machine learning"] },
+            { "name": { "en": "Tools", "fr": "Outils" }, "items": ["Excel · VBA", "Power BI", "Git"] },
+            { "name": { "en": "Languages", "fr": "Langues" }, "items": [{ "en": "French", "fr": "Français" }, { "en": "English", "fr": "Anglais" }, { "en": "Arabic", "fr": "Arabe" }] }
+          ]
+        },
+        {
+          "type": "certifications",
+          "items": [
+            { "name": { "en": "[Certification name]", "fr": "[Nom de la certification]" }, "issuer": "[Issuer]", "year": "[Year]" },
+            { "name": { "en": "[Certification name]", "fr": "[Nom de la certification]" }, "issuer": "[Issuer]", "year": "[Year]" }
+          ]
+        }
+      ]
+    }
+  ]
+}
