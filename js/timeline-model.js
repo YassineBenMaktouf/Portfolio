@@ -121,7 +121,11 @@ export function boatAt(state, anchors) {
 
 export function anchorFractions(pointAt, totalLength, points, samples = 800) {
   const pts = [];
-  for (let i = 0; i <= samples; i++) pts.push({ len: (i / samples) * totalLength, ...pointAt((i / samples) * totalLength) });
+  for (let i = 0; i <= samples; i++) {
+    const len = (i / samples) * totalLength;
+    const p = pointAt(len);   // DOMPoint: x/y are prototype getters, so read them explicitly
+    pts.push({ len, x: p.x, y: p.y });
+  }
   return points.map(([x, y]) => {
     let best = pts[0];
     let bestD = Infinity;
@@ -137,6 +141,19 @@ export function cardAt(state) {
   if (state.phase === 'landing') return 0;
   if (state.phase === 'unfold') return ease(state.t);
   return 1;
+}
+
+// Full (italic) labels fade out before the zoomed (capitals) labels fade in.
+export function labelMix(zoom) {
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  return { full: clamp(1 - (zoom - 1.1) / 0.35), zoom: clamp((zoom - 1.5) / 0.5) };
+}
+
+// The corner title card belongs to the full-chart view only.
+export function cardOpacityAt(state) {
+  if (BEFORE.has(state.phase)) return 1;
+  if (state.phase === 'sail' && state.island === 0) return Math.max(0, 1 - state.t / 0.35);
+  return 0;
 }
 
 export function chartFadeAt(state) {

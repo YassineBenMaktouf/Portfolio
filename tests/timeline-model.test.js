@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   SEGMENT_LEN, buildSchedule, stateAt, ease, progressOf, islandProgress, scrollStatus, unrollAt,
   markerStatus, fullViewBox, focusViewBox, lerpViewBox, cameraAt, boatAt, anchorFractions,
-  cardAt, chartFadeAt, letterAt, hashForState, stripViewBox
+  cardAt, chartFadeAt, letterAt, hashForState, stripViewBox, labelMix, cardOpacityAt
 } from '../js/timeline-model.js';
 import { ISLANDS } from '../js/layout.js';
 
@@ -138,6 +138,17 @@ test('anchorFractions finds each point on a straight path', () => {
   assert.ok(Math.abs(f[2] - 1) < 0.01);
 });
 
+test('anchorFractions works with DOMPoint-like objects (x/y as prototype getters)', () => {
+  class FakeDOMPoint {
+    constructor(x, y) { this._x = x; this._y = y; }
+    get x() { return this._x; }
+    get y() { return this._y; }
+  }
+  const f = anchorFractions((len) => new FakeDOMPoint(len, 0), 100, [[0, 0], [50, 0], [100, 0]], 200);
+  assert.ok(Math.abs(f[1] - 0.5) < 0.01, `got ${f[1]}`);
+  assert.ok(Math.abs(f[2] - 1) < 0.01);
+});
+
 test('card, chart fade and letter', () => {
   assert.equal(cardAt({ phase: 'landing', t: 0.5 }), 0);
   assert.equal(cardAt({ phase: 'unfold', t: 1 }), 1);
@@ -147,6 +158,24 @@ test('card, chart fade and letter', () => {
   assert.equal(chartFadeAt({ phase: 'end', t: 1 }), 0.55);
   assert.equal(letterAt({ phase: 'end', t: 1 }), 1);
   assert.equal(letterAt({ phase: 'return', t: 1 }), 0);
+});
+
+test('label crossfade never shows both label styles strongly at once', () => {
+  assert.deepEqual(labelMix(1), { full: 1, zoom: 0 });
+  assert.deepEqual(labelMix(2.6), { full: 0, zoom: 1 });
+  for (let z = 1; z <= 2.6; z += 0.05) {
+    const m = labelMix(z);
+    assert.ok(Math.min(m.full, m.zoom) <= 0.05, `z=${z.toFixed(2)} full=${m.full} zoom=${m.zoom}`);
+  }
+});
+
+test('corner card stays through the chart view and fades out as the first sail begins', () => {
+  assert.equal(cardOpacityAt({ phase: 'landing', island: null, t: 0 }), 1);
+  assert.equal(cardOpacityAt({ phase: 'unfold', island: null, t: 1 }), 1);
+  assert.equal(cardOpacityAt({ phase: 'sail', island: 0, t: 0 }), 1);
+  assert.equal(cardOpacityAt({ phase: 'sail', island: 0, t: 0.5 }), 0);
+  assert.equal(cardOpacityAt({ phase: 'hold', island: 2, t: 0.5 }), 0);
+  assert.equal(cardOpacityAt({ phase: 'end', island: null, t: 1 }), 0);
 });
 
 test('hash for state', () => {

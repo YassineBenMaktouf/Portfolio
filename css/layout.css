@@ -43,8 +43,8 @@ body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacit
 body[data-phase="landing"] .landing-cta { opacity: 1; }
 body[data-phase="unfold"] .chart-cta { opacity: 1; }
 
-.panel { position: absolute; right: 4vw; top: 12vh; width: min(450px, 38vw); display: flex; flex-direction: column; align-items: center; gap: 18px; z-index: 8; transition: opacity 0.3s; }
-.panel .scroll-content { max-height: 64vh; overflow-y: auto; }
+.panel { position: absolute; right: 4vw; top: max(12vh, 100px); width: min(450px, 38vw); display: flex; flex-direction: column; align-items: center; gap: 18px; z-index: 8; transition: opacity 0.3s; }
+.panel .scroll-content { max-height: calc(100vh - max(12vh, 100px) - 150px); overflow-y: auto; }
 .panel.is-empty { opacity: 0; pointer-events: none; }
 
 .letter { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: min(540px, 92vw); background: var(--paper); border: 1.5px solid var(--ink); padding: 10px; box-shadow: 0 30px 60px rgba(28, 43, 74, 0.25); z-index: 12; }

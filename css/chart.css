@@ -5,7 +5,7 @@
 .soundings text { font: 9px var(--font-mono); fill: var(--sounding); }
 .ripple { fill: none; stroke: var(--ink); stroke-width: 0.6; }
 .coast { fill: var(--land); stroke: var(--ink); stroke-width: 1.6; }
-.label-full { font-family: var(--font-display); fill: var(--ink); opacity: calc(1 - var(--zoom-mix, 0)); }
+.label-full { font-family: var(--font-display); fill: var(--ink); opacity: var(--full-mix, 1); }
 .label-full .num { font-family: var(--font-mono); fill: var(--brass-dark); letter-spacing: 0.22em; }
 .label-full .name { font-style: italic; }
 .label-zoom { font-family: var(--font-display); fill: var(--ink-name); letter-spacing: 0.2em; opacity: var(--zoom-mix, 0); }
