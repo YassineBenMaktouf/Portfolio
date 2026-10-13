@@ -66,6 +66,9 @@ async function boot() {
       linearEl.prepend(hero);
       applyI18n(hero, i18n.t);
     }
+    // In voyage mode #linear is a visually hidden copy for screen readers: keep it out of the Tab order
+    // so keyboard focus never lands on something invisible (keyboard users get the skip link instead).
+    if (mode === 'voyage') linearEl.querySelectorAll('a, button').forEach((el) => el.setAttribute('tabindex', '-1'));
     document.querySelectorAll('#lang-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === i18n.lang)));
     app.controller?.refresh();
   }

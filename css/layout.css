@@ -14,11 +14,12 @@ body[data-phase="landing"] .brand, body[data-phase="unfold"] .brand { opacity: 0
 .cv-icon { display: none; }
 
 .markers { position: fixed; left: 40px; top: 92px; z-index: 30; display: flex; align-items: center; transition: opacity 0.3s; }
-body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacity: 0; pointer-events: none; }
+body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacity: 0; pointer-events: none; visibility: hidden; }
+.markers { transition: opacity 0.3s, visibility 0.3s; }
 .marker { position: relative; display: flex; align-items: center; border: 0; background: transparent; padding: 9px 0; }
 .marker:not(:last-child)::after { content: ''; width: 34px; border-top: 1.5px dashed #8C8266; }
 .marker-dot { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 10px; }
-.marker[data-status="current"] .marker-dot { background: var(--brass); }
+.marker[data-status="current"] .marker-dot { background: #C49A5A; } /* brass tint: 5.4:1 with ink (plain brass is 4.0:1) */
 .marker[data-status="done"] .marker-dot { background: #D9C9A3; }
 .marker[data-status="done"] .marker-dot::before { content: '✓'; }
 .marker[data-status="done"] .marker-dot { font-size: 0; }
