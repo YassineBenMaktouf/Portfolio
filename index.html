@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yassine Ben Maktouf — Actuary &amp; Data Scientist</title>
+  <meta name="description" content="Portfolio of Yassine Ben Maktouf, actuary and data scientist engineer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/chart.css">
+  <link rel="stylesheet" href="css/scroll.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body class="mode-voyage" data-phase="landing">
+  <a id="skip-link" class="skip-link" href="?view=list#linear" data-i18n="skip">Skip to content</a>
+
+  <header id="site-header" class="site-header">
+    <p id="brand" class="brand">Yassine Ben Maktouf</p>
+    <div class="header-actions">
+      <div id="lang-toggle" class="lang-toggle" role="group" data-i18n-aria="lang.label" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <a id="cv-link" class="cv-link" href="#" download>
+        <span class="cv-text" data-i18n="header.cv">Download CV</span>
+        <span class="cv-icon" aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </header>
+
+  <nav id="markers" class="markers" data-i18n-aria="nav.label" aria-label="Islands">
+    <button type="button" class="marker" data-index="0" data-status="upcoming"><span class="marker-dot">I</span></button>
+    <button type="button" class="marker" data-index="1" data-status="upcoming"><span class="marker-dot">II</span></button>
+    <button type="button" class="marker" data-index="2" data-status="upcoming"><span class="marker-dot">III</span></button>
+    <button type="button" class="marker" data-index="3" data-status="upcoming"><span class="marker-dot">IV</span></button>
+    <button type="button" class="marker" data-index="4" data-status="upcoming"><span class="marker-dot">V</span></button>
+  </nav>
+
+  <main>
+    <div id="track" class="track">
+      <div id="stage" class="stage">
+        <div id="chart-root" class="chart-root"></div>
+
+        <div id="title-card" class="title-card">
+          <div class="title-card-plaque" data-i18n="landing.badge">PORTFOLIO</div>
+          <div class="title-card-inner">
+            <p class="title-card-kicker" data-i18n="landing.kicker">A Chart of the Waters navigated by</p>
+            <h1 class="title-card-name">Yassine<br>Ben Maktouf</h1>
+            <div class="title-card-divider" aria-hidden="true">
+              <span></span>
+              <svg width="26" height="26" viewBox="-13 -13 26 26"><path d="M0 -12 L3 -3 L0 0 Z M0 12 L-3 3 L0 0 Z M12 0 L3 3 L0 0 Z M-12 0 L-3 -3 L0 0 Z" fill="#1C2B4A"/><path d="M0 -12 L-3 -3 L0 0 Z M0 12 L3 3 L0 0 Z M12 0 L3 -3 L0 0 Z M-12 0 L-3 3 L0 0 Z" fill="#A8834A"/></svg>
+              <span></span>
+            </div>
+            <p class="title-card-role" data-i18n="landing.role">ACTUARY · DATA SCIENTIST</p>
+            <p class="title-card-tagline" data-i18n="landing.tagline">A portfolio in five islands</p>
+          </div>
+        </div>
+
+        <p id="landing-cta" class="cta landing-cta"><span data-i18n="landing.cta">Scroll to unfold the chart</span> <span aria-hidden="true">↓</span></p>
+        <p id="chart-cta" class="cta chart-cta"><span data-i18n="chart.cta">Scroll to set sail</span> <span aria-hidden="true">↓</span></p>
+
+        <aside id="panel" class="panel" aria-hidden="true">
+          <div class="stub stub-read" hidden><span class="stub-rollers"></span><span class="stub-label"></span></div>
+          <div class="scroll">
+            <div class="roller"></div>
+            <div class="scroll-body"><div class="scroll-content"></div></div>
+            <div class="roller"></div>
+          </div>
+          <div class="stub stub-next" hidden><span class="stub-rollers"><span class="seal"></span></span><span class="stub-label"></span></div>
+        </aside>
+
+        <div id="letter" class="letter" hidden></div>
+      </div>
+    </div>
+
+    <div id="linear" class="linear sr-only"></div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
