@@ -51,3 +51,8 @@ test('safeStorage works with a missing storage and a real one', () => {
   assert.equal(s.get('lang'), 'fr');
 });
 test('LANGS is en and fr', () => assert.deepEqual(LANGS, ['en', 'fr']));
+
+test('t treats an empty translation as missing and falls back to English', () => {
+  const i18n = createI18n({ en: { k: 'Hello' }, fr: { k: '' } }, 'fr');
+  assert.equal(i18n.t('k'), 'Hello');
+});

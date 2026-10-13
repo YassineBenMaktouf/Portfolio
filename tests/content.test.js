@@ -40,3 +40,8 @@ test('shipped content.json is valid', () => {
 test('island ids are fixed', () => {
   assert.deepEqual(ISLAND_IDS, ['about', 'education', 'experience', 'projects', 'skills']);
 });
+
+test('pick keeps numbers (e.g. a year written as 2023)', () => {
+  assert.equal(pick(2023, 'en'), '2023');
+  assert.equal(pick(0, 'fr'), '0');
+});

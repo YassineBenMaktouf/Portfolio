@@ -37,8 +37,22 @@ export function initLinear({ stage, svg, linearEl, card, onIsland }) {
     visible.target.classList.add('is-visible');
   }, { rootMargin: '-35% 0px -45% 0px', threshold: [0, 0.25, 0.5] });
 
-  linearEl.querySelectorAll('.leg').forEach((leg) => observer.observe(leg));
+  const observeLegs = () => {
+    observer.disconnect();
+    linearEl.querySelectorAll('.leg').forEach((leg) => observer.observe(leg));
+  };
+  observeLegs();
   svg.style.opacity = '1';
   focusOn(null);
-  return { destroy() { observer.disconnect(); } };
+  return {
+    // Called after #linear is re-rendered (language switch): watch the new sections.
+    refresh() {
+      // Sections already reached before the re-render stay visible.
+      linearEl.querySelectorAll('.leg').forEach((leg) => {
+        if (leg.getBoundingClientRect().top < window.innerHeight * 0.65) leg.classList.add('is-visible');
+      });
+      observeLegs();
+    },
+    destroy() { observer.disconnect(); }
+  };
 }

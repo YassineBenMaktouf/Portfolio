@@ -16,13 +16,13 @@ export function targetProgress(target, schedule) {
 }
 
 export function initNav({ markersEl, ids, schedule, mode, scrollToProgress, scrollToSection }) {
-  const go = (target) => {
+  const go = (target, { instant = false } = {}) => {
     if (target === null) return;
     if (mode === 'voyage') {
       const p = targetProgress(target, schedule);
-      if (p !== null) scrollToProgress(p);
+      if (p !== null) scrollToProgress(p, { instant });
     } else {
-      scrollToSection(target === 'contact' ? 'leg-contact' : `leg-${ids[target]}`);
+      scrollToSection(target === 'contact' ? 'leg-contact' : `leg-${ids[target]}`, { instant });
     }
   };
 
@@ -32,7 +32,8 @@ export function initNav({ markersEl, ids, schedule, mode, scrollToProgress, scro
   });
   window.addEventListener('hashchange', () => go(resolveHash(location.hash, ids)));
   const initial = resolveHash(location.hash, ids);
-  if (initial !== null) requestAnimationFrame(() => go(initial));
+  // Spec §5: loading a hash jumps straight there (no fly-through of the whole story).
+  if (initial !== null) requestAnimationFrame(() => go(initial, { instant: true }));
 
   let lastHash = location.hash;
   document.addEventListener('voyage:state', (ev) => {

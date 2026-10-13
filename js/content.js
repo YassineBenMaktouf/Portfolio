@@ -3,6 +3,7 @@ export const ISLAND_IDS = ['about', 'education', 'experience', 'projects', 'skil
 export function pick(value, lang) {
   if (value == null) return '';
   if (typeof value === 'string') return value;
+  if (typeof value === 'number' && Number.isFinite(value)) return String(value);
   if (typeof value === 'object') {
     if (typeof value[lang] === 'string' && value[lang] !== '') return value[lang];
     if (typeof value.en === 'string') return value.en;

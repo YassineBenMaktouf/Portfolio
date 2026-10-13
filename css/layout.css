@@ -75,7 +75,7 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
 .linear-hero { display: flex; justify-content: center; padding: 48px 0 24px; }
 .title-card-static { position: relative; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
 .leg { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; display: flex; flex-direction: column; gap: 24px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.leg.is-visible { opacity: 1; transform: none; }
+.leg.is-visible, .boot-failed .leg { opacity: 1; transform: none; }
 .mode-linear .leg { scroll-margin-top: calc(42vh + 20px); }
 .leg-title { margin: 0; text-align: center; font-family: var(--font-display); font-weight: 400; font-size: 34px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-name); }
 .leg-num { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; color: var(--brass-dark); }

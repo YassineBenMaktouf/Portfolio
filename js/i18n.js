@@ -21,7 +21,8 @@ export function createI18n(ui, lang) {
   let current = LANGS.includes(lang) ? lang : 'en';
   const listeners = new Set();
   function t(key, vars = {}) {
-    const raw = ui?.[current]?.[key] ?? ui?.en?.[key] ?? key;
+    const own = ui?.[current]?.[key];
+    const raw = (typeof own === 'string' && own !== '') ? own : (ui?.en?.[key] || key);
     return String(raw).replace(/\{(\w+)\}/g, (match, name) => (vars[name] ?? match));
   }
   return {

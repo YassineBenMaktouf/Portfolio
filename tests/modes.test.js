@@ -12,3 +12,8 @@ test('phones, reduced motion and ?view=list get the linear page', () => {
   assert.equal(chooseMode({ width: 767, reducedMotion: false, search: '' }), 'linear');
   assert.equal(chooseMode({ width: 768, reducedMotion: false, search: '?x=1' }), 'voyage');
 });
+
+test('falls back to the linear page when the animation library failed to load', () => {
+  assert.equal(chooseMode({ width: 1440, reducedMotion: false, search: '', animationAvailable: false }), 'linear');
+  assert.equal(chooseMode({ width: 1440, reducedMotion: false, search: '', animationAvailable: true }), 'voyage');
+});

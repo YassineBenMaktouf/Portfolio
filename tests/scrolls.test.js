@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { islandMeta, renderScroll, scrollFrame, scrollLabel, renderLetter, renderLinear } from '../js/scrolls.js';
+import { islandMeta, renderScroll, scrollFrame, scrollLabel, renderLetter, renderLinear, cvHref } from '../js/scrolls.js';
 import { createI18n } from '../js/i18n.js';
 import { fixtureContent } from './fixtures.js';
 import { readFileSync } from 'node:fs';
@@ -104,4 +104,11 @@ test('renderLinear has five island sections plus contact', () => {
   const html = renderLinear({ content: fixtureContent(), lang: 'en', t });
   assert.equal((html.match(/<section class="leg/g) || []).length, 6);
   for (const id of ['about', 'education', 'experience', 'projects', 'skills', 'contact']) assert.ok(html.includes(`id="leg-${id}"`), id);
+});
+
+test('cvHref returns the CV for the language and neutralises unsafe values', () => {
+  const p = fixtureContent().person;
+  assert.equal(cvHref(p, 'fr'), 'cv/CV-Yassine-Ben-Maktouf-FR.pdf');
+  assert.equal(cvHref({ ...p, cv: { en: 'javascript:alert(1)' } }, 'en'), '#');
+  assert.equal(cvHref({ ...p, cv: null }, 'en'), '#');
 });

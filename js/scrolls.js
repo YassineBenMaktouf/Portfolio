@@ -90,6 +90,11 @@ export function scrollLabel({ island, item, lang, t }) {
   }
 }
 
+export function cvHref(person, lang) {
+  const raw = pick(person?.cv, lang);
+  return raw ? safeUrl(raw) : '#';
+}
+
 export function renderLetter({ person, lang, t }) {
   const email = String(person.email || '').trim();
   const row = (label, href) => `<li><span>${e(label)}</span>${href}</li>`;
@@ -104,7 +109,7 @@ export function renderLetter({ person, lang, t }) {
     + (person.github ? row('GitHub', externalLink(person.github, 'GitHub')) : '')
     + '</ul>'
     + '<div class="letter-actions">'
-    + `<a class="btn btn-solid" href="${e(safeUrl(pick(person.cv, lang)))}" download>${e(t('header.cv'))}</a>`
+    + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download>${e(t('header.cv'))}</a>`
     + `<button type="button" class="btn btn-outline" data-action="sail-again">↺ ${e(t('end.again'))}</button>`
     + '</div></div>';
 }

@@ -132,9 +132,10 @@ export function createVoyage(app) {
 
   return {
     refresh() { panelKey = ''; measure(); render(lastProgress); },
-    scrollToProgress(p) {
+    scrollToProgress(p, { instant = false } = {}) {
       const top = trigger.start + clamp01(p) * (trigger.end - trigger.start);
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top, behavior: instant ? 'auto' : 'smooth' });
+      if (instant) { proxy.p = clamp01(p); render(proxy.p); }
     },
     getState() { return current; }
   };

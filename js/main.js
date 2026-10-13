@@ -3,7 +3,7 @@ import { initNav } from './nav.js';
 import { detectLanguage, safeStorage, createI18n, applyI18n } from './i18n.js';
 import { chartSVG, setChartLabels } from './chart.js';
 import { buildSchedule } from './timeline-model.js';
-import { renderLinear, renderLetter, islandMeta } from './scrolls.js';
+import { renderLinear, renderLetter, islandMeta, cvHref } from './scrolls.js';
 import { chooseMode } from './modes.js';
 import { initLinear } from './linear.js';
 import { createVoyage } from './voyage.js';
@@ -44,7 +44,8 @@ async function boot() {
   const svg = document.getElementById('chart');
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mode = chooseMode({ width: window.innerWidth, reducedMotion, search: location.search });
+  const animationAvailable = Boolean(window.gsap && window.ScrollTrigger);
+  const mode = chooseMode({ width: window.innerWidth, reducedMotion, search: location.search, animationAvailable });
   document.body.classList.toggle('mode-voyage', mode === 'voyage');
   document.body.classList.toggle('mode-linear', mode === 'linear');
 
@@ -58,7 +59,7 @@ async function boot() {
     applyI18n(document, i18n.t);
     labelMarkers(i18n, content);
     setChartLabels(svg, titlesFor(content, i18n.lang), i18n.t('chart.harbour'), i18n.t('island'));
-    cvLink.href = pick(content.person.cv, i18n.lang) || '#';
+    cvLink.href = cvHref(content.person, i18n.lang);
     letterEl.innerHTML = renderLetter({ person: content.person, lang: i18n.lang, t: i18n.t });
     const hero = linearEl.querySelector('.linear-hero');
     linearEl.innerHTML = renderLinear({ content, lang: i18n.lang, t: i18n.t });
@@ -88,7 +89,7 @@ async function boot() {
       card: document.getElementById('title-card'),
       onIsland: (key) => { document.body.dataset.phase = key === null ? 'landing' : 'hold'; }
     });
-    app.controller.refresh = () => {};
+    app.controller.scrollToProgress = () => {};
   } else {
     app.controller = createVoyage(app);
   }
@@ -99,9 +100,11 @@ async function boot() {
     schedule,
     mode,
     scrollToProgress: (p) => app.controller.scrollToProgress(p),
-    scrollToSection: (id) => document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
+    scrollToSection: (id, { instant = false } = {}) => document.getElementById(id)?.scrollIntoView({ behavior: instant || reducedMotion ? 'auto' : 'smooth', block: 'start' })
   });
   app.controller.refresh();   // re-render once so the markers and hash pick up the current state
+  // Web fonts change the title card's height; re-measure once they are in.
+  document.fonts?.ready.then(() => app.controller.refresh());
 
   document.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-action="sail-again"]')) {
@@ -114,5 +117,10 @@ async function boot() {
 
 boot().catch((err) => {
   console.error(err);
+  // Never strand a visitor on the landing card: show whatever content was rendered as a plain page.
   document.body.classList.add('boot-failed');
+  document.body.classList.remove('mode-voyage');
+  document.body.classList.add('mode-linear');
+  document.getElementById('linear')?.classList.remove('sr-only');
+  document.getElementById('track')?.style.removeProperty('height');
 });

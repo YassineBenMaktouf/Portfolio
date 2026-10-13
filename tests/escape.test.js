@@ -20,3 +20,16 @@ test('safeUrl blocks script and protocol-relative URLs', () => {
   assert.equal(safeUrl('//evil.example'), '#');
   assert.equal(safeUrl(undefined), '#');
 });
+
+test('safeUrl blocks javascript: hidden by tabs, newlines or control characters', () => {
+  assert.equal(safeUrl('java\tscript:alert(1)'), '#');
+  assert.equal(safeUrl('jav\nascript:x'), '#');
+  assert.equal(safeUrl('\u0001javascript:alert(1)'), '#');
+  assert.equal(safeUrl('https://ok.example/\tpath'), 'https://ok.example/path');
+});
+test('safeUrl blocks backslash URLs that browsers treat as protocol-relative', () => {
+  assert.equal(safeUrl(String.raw`\\evil.com`), '#');
+  assert.equal(safeUrl(String.raw`/\evil.com`), '#');
+  assert.equal(safeUrl(String.raw`\/evil.com`), '#');
+  assert.equal(safeUrl('/img/photo.jpg'), '/img/photo.jpg');
+});
