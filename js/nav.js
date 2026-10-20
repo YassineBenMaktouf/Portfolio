@@ -15,10 +15,10 @@ export function targetProgress(target, schedule) {
   return islandProgress(schedule, target);
 }
 
-export function initNav({ markersEl, ids, schedule, mode, scrollToProgress, scrollToSection }) {
+export function initNav({ markersEl, ids, schedule, getMode, scrollToProgress, scrollToSection }) {
   const go = (target, { instant = false } = {}) => {
     if (target === null) return;
-    if (mode === 'voyage') {
+    if (getMode() === 'voyage') {
       const p = targetProgress(target, schedule);
       if (p !== null) scrollToProgress(p, { instant });
     } else {
@@ -45,4 +45,5 @@ export function initNav({ markersEl, ids, schedule, mode, scrollToProgress, scro
       history.replaceState(null, '', hash || location.pathname + location.search);
     }
   });
+  return { go };
 }

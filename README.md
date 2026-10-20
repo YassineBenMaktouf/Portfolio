@@ -14,7 +14,7 @@ A one-page portfolio drawn as an antique sea chart. Scrolling sails a boat acros
 
 ## Run locally
     python -m http.server 8080
-Then open http://localhost:8080. Add `?view=list` to see the plain list version (what phones and reduced-motion visitors get).
+Then open http://localhost:8080. The layout follows the window width: below 1024px (phones, portrait tablets) you get the stacked list; resize the window to switch live. Visitors with reduced motion always get the list.
 
 ## Tests
     npm test

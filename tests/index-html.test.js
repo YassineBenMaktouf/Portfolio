@@ -23,3 +23,8 @@ test('loads pinned GSAP 3.12.5 from cdnjs and main.js as a module', () => {
 test('panel contains the scroll component parts', () => {
   for (const cls of ['stub-read', 'scroll-content', 'stub-next']) assert.ok(html.includes(cls), cls);
 });
+
+test('no ?view=list URL switch remains; the skip link targets the list in-page', () => {
+  assert.ok(!html.includes('view=list'));
+  assert.ok(html.includes('id="skip-link" class="skip-link" href="#linear"'));
+});

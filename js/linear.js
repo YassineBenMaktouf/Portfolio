@@ -29,30 +29,47 @@ export function initLinear({ stage, svg, linearEl, card, onIsland }) {
     onIsland(key);
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries.filter((en) => en.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    const raw = visible.target.dataset.islandIndex;
-    focusOn(raw === 'contact' ? 'contact' : Number(raw));
-    visible.target.classList.add('is-visible');
-  }, { rootMargin: '-35% 0px -45% 0px', threshold: [0, 0.25, 0.5] });
-
-  const observeLegs = () => {
-    observer.disconnect();
-    linearEl.querySelectorAll('.leg').forEach((leg) => observer.observe(leg));
+  // Active section = the last one whose top has passed 45% of the viewport. Measured on scroll
+  // (one rAF per frame) rather than with IntersectionObserver, which can miss very tall sections
+  // during long smooth scrolls and leave them invisible.
+  let activeKey;
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const line = window.innerHeight * 0.45;
+    let key = null;
+    linearEl.querySelectorAll('.leg').forEach((leg) => {
+      if (leg.getBoundingClientRect().top <= line) {
+        leg.classList.add('is-visible');
+        const raw = leg.dataset.islandIndex;
+        key = raw === 'contact' ? 'contact' : Number(raw);
+      }
+    });
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) {
+      linearEl.querySelectorAll('.leg').forEach((leg) => leg.classList.add('is-visible'));
+      key = 'contact';
+    }
+    if (key !== activeKey) {
+      activeKey = key;
+      focusOn(key);
+    }
   };
-  observeLegs();
+  const onScroll = () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   svg.style.opacity = '1';
-  focusOn(null);
+  update();
   return {
-    // Called after #linear is re-rendered (language switch): watch the new sections.
-    refresh() {
-      // Sections already reached before the re-render stay visible.
-      linearEl.querySelectorAll('.leg').forEach((leg) => {
-        if (leg.getBoundingClientRect().top < window.innerHeight * 0.65) leg.classList.add('is-visible');
-      });
-      observeLegs();
-    },
-    destroy() { observer.disconnect(); }
+    // Called after #linear is re-rendered (language switch): re-mark the new sections.
+    refresh() { activeKey = undefined; update(); },
+    destroy() {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      heroWrap.remove();
+      svg.style.removeProperty('opacity');
+    }
   };
 }

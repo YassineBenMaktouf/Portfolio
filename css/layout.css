@@ -64,13 +64,17 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
 .btn-outline { background: transparent; border: 1px solid var(--ink); }
 .letter-static { position: static; transform: none; margin: 60px auto; }
 
-/* ---- linear mode (phones, reduced motion, ?view=list) ---- */
+/* ---- linear mode (narrow windows, reduced motion, skip link) ---- */
+/* clip, not hidden: hidden would break the sticky map strip */
+html, body { overflow-x: clip; }
 .mode-linear .track { height: auto !important; position: sticky; top: 0; z-index: 6; }
 .mode-linear .stage { position: relative; height: 42vh; border-bottom: 1px solid var(--ink); }
 .mode-linear #title-card, .mode-linear .landing-cta, .mode-linear .chart-cta, .mode-linear .panel, .mode-linear #letter { display: none; }
 .mode-linear .label-full { opacity: 0; }
 .mode-linear .label-zoom { opacity: 1; }
-.mode-linear .brand, .mode-linear .markers { opacity: 1 !important; pointer-events: auto !important; }
+.mode-linear .brand, .mode-linear .markers { opacity: 1 !important; pointer-events: auto !important; visibility: visible !important; }
+/* markers sit inside the bottom edge of the map strip, never over the text below it */
+.mode-linear .markers { position: fixed; top: calc(42vh - 52px); left: 16px; margin: 0; }
 .linear { padding: 24px 16px 80px; }
 .linear-hero { display: flex; justify-content: center; padding: 48px 0 24px; }
 .title-card-static { position: relative; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
@@ -93,8 +97,16 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
   .cv-link { width: 44px; justify-content: center; padding: 0; }
   .mode-linear .stage { height: 250px; }
   .mode-linear .leg { scroll-margin-top: 258px; }
-  .markers { position: absolute; top: auto; left: 16px; bottom: 10px; z-index: 7; }
-  .mode-linear .markers { position: sticky; top: 210px; margin: -40px 0 0 16px; }
+  .mode-linear .markers { top: 198px; }
+  .linear { padding: 8px 14px 64px; }
+  .linear-hero { padding: 40px 0 8px; }
+  .leg { padding: 36px 0 16px; gap: 20px; }
+  .leg-title { font-size: 24px; letter-spacing: 0.14em; overflow-wrap: anywhere; }
+  .scroll-content { padding: 20px 18px 22px; }
+  .scroll-kicker { letter-spacing: 0.14em; }
+  .scroll-title { font-size: 26px; }
+  .letter-inner { padding: 40px 20px 26px; }
+  .letter-actions { flex-wrap: wrap; justify-content: center; }
   .title-card-inner { padding: 36px 18px 26px; }
   .title-card-name { font-size: 52px; }
   .title-card-kicker { font-size: 19px; }

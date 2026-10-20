@@ -4,7 +4,7 @@ import { detectLanguage, safeStorage, createI18n, applyI18n } from './i18n.js';
 import { chartSVG, setChartLabels } from './chart.js';
 import { buildSchedule } from './timeline-model.js';
 import { renderLinear, renderLetter, islandMeta, cvHref } from './scrolls.js';
-import { chooseMode } from './modes.js';
+import { chooseMode, BREAKPOINT } from './modes.js';
 import { initLinear } from './linear.js';
 import { createVoyage } from './voyage.js';
 import { ISLANDS } from './layout.js';
@@ -43,16 +43,28 @@ async function boot() {
   });
   const svg = document.getElementById('chart');
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const narrowQuery = window.matchMedia(`(max-width: ${BREAKPOINT - 1}px)`);
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const animationAvailable = Boolean(window.gsap && window.ScrollTrigger);
-  const mode = chooseMode({ width: window.innerWidth, reducedMotion, search: location.search, animationAvailable });
-  document.body.classList.toggle('mode-voyage', mode === 'voyage');
-  document.body.classList.toggle('mode-linear', mode === 'linear');
+  let forceList = false;   // set by the skip link: the visitor asked for the plain page
+  const wantedMode = () => chooseMode({
+    width: window.innerWidth, reducedMotion: motionQuery.matches, animationAvailable, forceList
+  });
 
   const linearEl = document.getElementById('linear');
   const letterEl = document.getElementById('letter');
   const cvLink = document.getElementById('cv-link');
-  const app = { content, ui, i18n, schedule, svg, mode, controller: null };
+  const app = { content, ui, i18n, schedule, svg, mode: null, controller: null };
+  let linearKey = null;   // island the linear page is showing (null = top, 'contact' = letter)
+
+  // In voyage mode #linear is a visually hidden copy for screen readers: keep it out of the Tab order
+  // so keyboard focus never lands on something invisible (keyboard users get the skip link instead).
+  function syncLinearTabOrder() {
+    linearEl.querySelectorAll('a, button').forEach((el) => {
+      if (app.mode === 'voyage') el.setAttribute('tabindex', '-1');
+      else el.removeAttribute('tabindex');
+    });
+  }
 
   function renderText() {
     document.documentElement.lang = i18n.lang;
@@ -67,9 +79,7 @@ async function boot() {
       linearEl.prepend(hero);
       applyI18n(hero, i18n.t);
     }
-    // In voyage mode #linear is a visually hidden copy for screen readers: keep it out of the Tab order
-    // so keyboard focus never lands on something invisible (keyboard users get the skip link instead).
-    if (mode === 'voyage') linearEl.querySelectorAll('a, button').forEach((el) => el.setAttribute('tabindex', '-1'));
+    syncLinearTabOrder();
     document.querySelectorAll('#lang-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === i18n.lang)));
     app.controller?.refresh();
   }
@@ -82,34 +92,74 @@ async function boot() {
   });
   i18n.onChange((lang) => { storage.set('lang', lang); renderText(); });
 
-  if (mode === 'linear') {
-    linearEl.classList.remove('sr-only');
-    app.controller = initLinear({
-      stage: document.getElementById('stage'), svg, linearEl,
-      card: document.getElementById('title-card'),
-      onIsland: (key) => { document.body.dataset.phase = key === null ? 'landing' : 'hold'; }
-    });
-    app.controller.scrollToProgress = () => {};
-  } else {
-    app.controller = createVoyage(app);
+  // Where the visitor is right now, as a nav target, so a mode switch can land them in the same place.
+  function currentTarget() {
+    if (app.mode === 'linear') return linearKey;
+    const st = app.controller?.getState();
+    if (!st) return null;
+    if (st.phase === 'return' || st.phase === 'end') return 'contact';
+    return st.island;
   }
 
-  initNav({
+  const nav = initNav({
     markersEl: document.getElementById('markers'),
     ids: ISLAND_IDS,
     schedule,
-    mode,
-    scrollToProgress: (p) => app.controller.scrollToProgress(p),
-    scrollToSection: (id, { instant = false } = {}) => document.getElementById(id)?.scrollIntoView({ behavior: instant || reducedMotion ? 'auto' : 'smooth', block: 'start' })
+    getMode: () => app.mode,
+    scrollToProgress: (p, opts) => app.controller.scrollToProgress(p, opts),
+    scrollToSection: (id, { instant = false } = {}) => document.getElementById(id)?.scrollIntoView({ behavior: instant || motionQuery.matches ? 'auto' : 'smooth', block: 'start' })
   });
-  app.controller.refresh();   // re-render once so the markers and hash pick up the current state
+
+  function setMode(next) {
+    if (next === app.mode) return;
+    const target = app.mode ? currentTarget() : null;
+    const switching = app.mode !== null;
+    app.controller?.destroy();
+    app.mode = next;
+    document.body.classList.toggle('mode-voyage', next === 'voyage');
+    document.body.classList.toggle('mode-linear', next === 'linear');
+    linearEl.classList.toggle('sr-only', next === 'voyage');
+    syncLinearTabOrder();
+    if (next === 'linear') {
+      linearKey = null;
+      app.controller = initLinear({
+        stage: document.getElementById('stage'), svg, linearEl,
+        card: document.getElementById('title-card'),
+        onIsland: (key) => { linearKey = key; document.body.dataset.phase = key === null ? 'landing' : 'hold'; }
+      });
+      app.controller.scrollToProgress = () => {};
+      app.controller.getState = () => null;
+    } else {
+      app.controller = createVoyage(app);
+    }
+    app.controller.refresh();   // re-render once so the markers and hash pick up the current state
+    if (!switching) return;
+    if (target !== null) nav.go(target, { instant: true });
+    else window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  setMode(wantedMode());
+  // The page follows the window: crossing the breakpoint (or toggling reduced motion) swaps modes live.
+  const onQueryChange = () => setMode(wantedMode());
+  narrowQuery.addEventListener('change', onQueryChange);
+  motionQuery.addEventListener('change', onQueryChange);
   // Web fonts change the title card's height; re-measure once they are in.
   document.fonts?.ready.then(() => app.controller.refresh());
+
+  document.getElementById('skip-link').addEventListener('click', (ev) => {
+    ev.preventDefault();
+    forceList = true;
+    setMode('linear');
+    const first = document.getElementById(`leg-${ISLAND_IDS[0]}`);
+    first?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    linearEl.setAttribute('tabindex', '-1');
+    linearEl.focus({ preventScroll: true });
+  });
 
   document.addEventListener('click', (ev) => {
     if (ev.target.closest('[data-action="sail-again"]')) {
       if (app.mode === 'voyage') app.controller.scrollToProgress(0);
-      else window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+      else window.scrollTo({ top: 0, behavior: motionQuery.matches ? 'auto' : 'smooth' });
     }
   });
   window.__voyage = app;

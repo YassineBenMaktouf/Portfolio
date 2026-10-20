@@ -35,7 +35,7 @@ export function createVoyage(app) {
   const anchors = anchorFractions((l) => route.getPointAtLength(l), routeLen, ROUTE_POINTS);
 
   let views, cardBig, current = { phase: 'landing', island: null, scroll: null, t: 0 };
-  let panelKey = '', lastBoatX = null, lastProgress = 0;
+  let panelKey = '', lastBoatX = null, lastProgress = 0, destroyed = false;
 
   function measure() {
     const aspect = stage.clientWidth / Math.max(1, stage.clientHeight);
@@ -83,6 +83,7 @@ export function createVoyage(app) {
   }
 
   function render(progress) {
+    if (destroyed) return;
     lastProgress = progress;
     const state = stateAt(schedule, progress);
     current = state;
@@ -128,7 +129,8 @@ export function createVoyage(app) {
   proxy.p = trigger.progress;
   render(proxy.p);
 
-  window.addEventListener('resize', () => { measure(); ScrollTrigger.refresh(); render(lastProgress); });
+  const onResize = () => { if (!destroyed) { measure(); ScrollTrigger.refresh(); render(lastProgress); } };
+  window.addEventListener('resize', onResize);
 
   return {
     refresh() { panelKey = ''; measure(); render(lastProgress); },
@@ -137,6 +139,22 @@ export function createVoyage(app) {
       window.scrollTo({ top, behavior: instant ? 'auto' : 'smooth' });
       if (instant) { proxy.p = clamp01(p); render(proxy.p); }
     },
-    getState() { return current; }
+    getState() { return current; },
+    // Undo everything the voyage set, so the linear page starts from a clean DOM (window shrank below the breakpoint).
+    destroy() {
+      destroyed = true;
+      trigger.kill();
+      gsap.killTweensOf(proxy);
+      window.removeEventListener('resize', onResize);
+      track.style.removeProperty('height');
+      ['opacity', '--full-mix', '--zoom-mix'].forEach((prop) => svg.style.removeProperty(prop));
+      ['transform', 'opacity', 'visibility'].forEach((prop) => card.style.removeProperty(prop));
+      boat.removeAttribute('transform');
+      routeDone.style.removeProperty('stroke-dasharray');
+      icons.flat().forEach((el) => { el.dataset.status = 'hidden'; });
+      panel.classList.add('is-empty');
+      letter.hidden = true;
+      ['opacity', 'pointer-events'].forEach((prop) => letter.style.removeProperty(prop));
+    }
   };
 }

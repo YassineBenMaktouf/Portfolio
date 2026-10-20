@@ -4,7 +4,7 @@
 .roller::after { content: ''; position: absolute; inset: -4px -8px; border-left: 22px solid var(--roller-cap); border-right: 22px solid var(--roller-cap); border-radius: 6px; pointer-events: none; }
 .scroll-body { width: calc(100% - 30px); background: var(--paper); border-inline: 1px solid #D8C9A3; overflow: hidden; max-height: calc(var(--unroll, 1) * var(--content-h, 4000px)); }
 .scroll-content { padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 12px; }
-.scroll-kicker { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-dark); }
+.scroll-kicker { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; margin: 0; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-dark); }
 .scroll-title { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1.05; }
 .scroll-sub { margin: 4px 0 0; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
 .scroll-place { margin: 0; font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink-2); }
