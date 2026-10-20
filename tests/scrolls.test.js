@@ -132,3 +132,14 @@ test('a certifications scroll can carry its own title and verification links', (
   const meta = islandMeta(c, 'en');
   assert.equal(scrollLabel({ island: meta[4], item: c.islands[4].scrolls[1], lang: 'en', t }), 'Hackathons & awards');
 });
+
+test('a skills scroll can carry its own title', () => {
+  const c = fixtureContent();
+  c.islands[4].scrolls[0].title = { en: 'Tools of the trade', fr: 'Outils du métier' };
+  assert.ok(render(4, 0, c).includes('>Tools of the trade<'));
+  assert.ok(!render(4, 0, c).includes('Instruments aboard'));
+  assert.ok(render(4, 0, c, 'fr', tFr).includes('Outils du métier'));
+  const meta = islandMeta(c, 'en');
+  assert.equal(scrollLabel({ island: meta[4], item: c.islands[4].scrolls[0], lang: 'en', t }), 'Tools of the trade');
+  assert.ok(render(4, 0).includes('Instruments aboard'));
+});
