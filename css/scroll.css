@@ -39,3 +39,4 @@
 .stub-rollers::before { top: 0; }
 .stub-rollers::after { bottom: 0; }
 .stub-rollers .seal { position: absolute; left: 88px; top: 3px; width: 24px; height: 24px; z-index: 1; }
+.certs a { color: inherit; text-decoration-color: var(--brass); text-underline-offset: 3px; }

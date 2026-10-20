@@ -2,10 +2,10 @@
   "person": {
     "name": "Yassine Ben Maktouf",
     "role": { "en": "Actuary · Data Scientist", "fr": "Actuaire · Data Scientist" },
-    "photo": "",
-    "email": "your.email@example.com",
-    "linkedin": "https://www.linkedin.com/in/your-profile",
-    "github": "https://github.com/your-profile",
+    "photo": "img/portrait.png",
+    "email": "benmaktoufyassine@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/yassine-ben-maktouf/",
+    "github": "https://github.com/YassineBenMaktouf",
     "cv": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" }
   },
   "islands": [
@@ -14,10 +14,13 @@
       "title": { "en": "About me", "fr": "À propos" },
       "scrolls": [
         {
-          "bio": { "en": "[Three sentences — who you are, what drives you, and the first role you are looking for.]", "fr": "[Trois phrases — qui vous êtes, ce qui vous anime, et le premier poste recherché.]" },
-          "homePort": { "en": "[City, Country]", "fr": "[Ville, Pays]" },
-          "languages": { "en": "[French · English · Arabic]", "fr": "[Français · Anglais · Arabe]" },
-          "seeking": { "en": "[Actuarial analyst · 2026]", "fr": "[Analyste actuariel · 2026]" }
+          "bio": {
+            "en": "Actuary and data science engineer, freshly graduated from a double degree: a Master's in Actuarial Science at the Institut du Risque et de l'Assurance (Le Mans University) and Data Science Engineering at ESPRIT. I focus on risk modelling and insurance analytics, applying machine learning, NLP and LLM systems to actuarial and financial problems. Most recently I built an AI copilot for retirement-insurance products at Vermeg. I'm looking for a first role where actuarial judgement and data science meet.",
+            "fr": "Actuaire et ingénieur en data science, fraîchement diplômé d'un double cursus : Master en Actuariat à l'Institut du Risque et de l'Assurance (Le Mans Université) et ingénierie en Data Science à ESPRIT. Je me concentre sur la modélisation des risques et l'analytique de l'assurance, en appliquant le machine learning, le NLP et les LLM à des problématiques actuarielles et financières. Dernièrement, j'ai conçu un copilote IA pour des produits d'épargne retraite chez Vermeg. Je recherche un premier poste à la croisée de l'actuariat et de la data science."
+          },
+          "homePort": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" },
+          "languages": { "en": "Arabic & English (bilingual) · French (professional)", "fr": "Arabe & anglais (bilingue) · français (professionnel)" },
+          "seeking": { "en": "Actuarial / data science role · available now", "fr": "Poste en actuariat / data science · disponible" }
         }
       ]
     },
@@ -26,16 +29,46 @@
       "title": { "en": "Education", "fr": "Formation" },
       "scrolls": [
         {
-          "degree": { "en": "[Actuarial Science]", "fr": "[Science actuarielle]" },
-          "school": "[University name]", "city": { "en": "[City]", "fr": "[Ville]" }, "years": "[2021 – 2026]",
-          "summary": { "en": "[Focus of the degree, honours, thesis title.]", "fr": "[Axe du diplôme, mention, titre du mémoire.]" },
-          "courses": [{ "en": "Life contingencies", "fr": "Assurance vie" }, { "en": "Non-life pricing", "fr": "Tarification non-vie" }, { "en": "Reserving", "fr": "Provisionnement" }, "Solvency II"]
+          "degree": { "en": "Master's in Actuarial Science", "fr": "Master en Actuariat" },
+          "school": { "en": "Institut du Risque et de l'Assurance · Le Mans University", "fr": "Institut du Risque et de l'Assurance · Le Mans Université" }, "city": { "en": "Le Mans, France", "fr": "Le Mans, France" }, "years": "2024 – 2026",
+          "summary": {
+            "en": "Double degree with ESPRIT. Actuarial modelling of insurance risk, including mortality modelling and annuity pricing.",
+            "fr": "Double diplôme avec ESPRIT. Modélisation actuarielle des risques d'assurance, notamment la mortalité et la tarification des rentes."
+          },
+          "courses": [
+            { "en": "Mortality modelling", "fr": "Modélisation de la mortalité" },
+            { "en": "Annuity pricing", "fr": "Tarification des rentes" },
+            { "en": "Risk modelling", "fr": "Modélisation des risques" },
+            "R"
+          ]
         },
         {
-          "degree": { "en": "[Data Science Engineering]", "fr": "[Ingénierie en science des données]" },
-          "school": "[School name]", "city": { "en": "[City]", "fr": "[Ville]" }, "years": "[2019 – 2024]",
-          "summary": { "en": "[Focus of the degree and main project.]", "fr": "[Axe du diplôme et projet principal.]" },
-          "courses": ["Machine learning", "Python", "SQL", { "en": "Statistics", "fr": "Statistiques" }]
+          "degree": { "en": "Data Science Engineering", "fr": "Ingénierie en Data Science" },
+          "school": "ESPRIT", "city": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" }, "years": "2023 – 2026",
+          "summary": {
+            "en": "Engineering degree in computer science, data science track. Machine learning, deep learning, NLP and MLOps through hands-on projects.",
+            "fr": "Diplôme d'ingénieur en informatique, option Data Science. Machine learning, deep learning, NLP et MLOps à travers des projets concrets."
+          },
+          "courses": ["Machine learning", "Deep learning", "NLP", "MLOps", { "en": "Databases", "fr": "Bases de données" }]
+        },
+        {
+          "degree": { "en": "Preparatory classes · Mathematics–Physics", "fr": "Cycle préparatoire · Math–Physique" },
+          "school": "IPEIT", "city": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" }, "years": "2021 – 2023",
+          "summary": {
+            "en": "Two intensive years of mathematics and physics preparing for the national engineering-school entrance exams.",
+            "fr": "Deux années intensives de mathématiques et de physique en préparation aux concours nationaux d'entrée aux écoles d'ingénieurs."
+          },
+          "courses": [
+            { "en": "Analysis", "fr": "Analyse" },
+            { "en": "Linear algebra", "fr": "Algèbre linéaire" },
+            { "en": "Probability", "fr": "Probabilités" },
+            { "en": "Physics", "fr": "Physique" }
+          ]
+        },
+        {
+          "degree": { "en": "Baccalaureate in Mathematics", "fr": "Baccalauréat Mathématiques" },
+          "school": { "en": "Ibnou Rachik High School", "fr": "Lycée Ibnou Rachik" }, "city": { "en": "Ezzahra, Tunisia", "fr": "Ezzahra, Tunisie" }, "years": "2021",
+          "summary": { "en": "Mathematics section.", "fr": "Section mathématiques." }
         }
       ]
     },
@@ -44,24 +77,34 @@
       "title": { "en": "Experience", "fr": "Expérience" },
       "scrolls": [
         {
-          "role": { "en": "[Actuarial intern]", "fr": "[Stagiaire actuariat]" }, "company": "[Company]",
-          "city": { "en": "[City]", "fr": "[Ville]" }, "dates": { "en": "[MM YYYY – MM YYYY]", "fr": "[MM AAAA – MM AAAA]" },
+          "role": { "en": "Actuarial Data Scientist · end-of-studies internship", "fr": "Actuarial Data Scientist · projet de fin d'études" }, "company": "Vermeg for Banking & Insurance Software",
+          "city": { "en": "Lac 1, Tunis", "fr": "Lac 1, Tunis" }, "dates": { "en": "Feb 2026 – Jul 2026", "fr": "Févr. 2026 – Juil. 2026" },
           "points": [
-            { "en": "[What you built or analysed.]", "fr": "[Ce que vous avez construit ou analysé.]" },
-            { "en": "[The method or tool you used.]", "fr": "[La méthode ou l'outil utilisé.]" },
-            { "en": "[The result or impact.]", "fr": "[Le résultat ou l'impact.]" }
+            {"en": "Built an AI copilot that configures PERI retirement-insurance products in Vermeg's Solife platform from specification documents: an LLM extracts intent, then a deterministic, auditable engine applies each change to regulated XML and Groovy business rules.", "fr": "Conception d'un copilote IA qui configure des produits d'épargne retraite (PERI) dans Solife à partir de spécifications : un LLM extrait l'intention, puis un moteur déterministe et auditable applique chaque modification au XML réglementé et aux règles Groovy."},
+            {"en": "Developed a hybrid RAG assistant (dense + BM25, Reciprocal Rank Fusion) over an actuarial and insurance corpus, benchmarking embeddings and retrieval with MRR, Recall and NDCG.", "fr": "Développement d'un assistant RAG hybride (dense + BM25, Reciprocal Rank Fusion) sur un corpus actuariel et assurance, avec benchmark des embeddings et de la recherche via MRR, Recall et NDCG."},
+            {"en": "Evaluated fine-tuned XLM-RoBERTa vs. LLMs for NER, audited faithfulness with NLI, and shipped a multi-instance React + FastAPI platform.", "fr": "Évaluation de XLM-RoBERTa fine-tuné vs. LLM pour le NER, audit de fidélité par NLI, et livraison d'une plateforme multi-instances React + FastAPI."}
           ],
-          "tools": ["Python", "Excel / VBA"]
+          "tools": ["Python", "LLM", "RAG", "XLM-RoBERTa", "FastAPI", "React", "Groovy"]
         },
         {
-          "role": { "en": "[Data science intern]", "fr": "[Stagiaire data science]" }, "company": "[Company]",
-          "city": { "en": "[City]", "fr": "[Ville]" }, "dates": { "en": "[MM YYYY – MM YYYY]", "fr": "[MM AAAA – MM AAAA]" },
+          "role": { "en": "Data science intern", "fr": "Stagiaire data science" }, "company": "Les Laboratoires MédiS",
+          "city": { "en": "Nabeul, Tunisia", "fr": "Nabeul, Tunisie" }, "dates": { "en": "Jun 2025 – Aug 2025", "fr": "Juin 2025 – Août 2025" },
           "points": [
-            { "en": "[What you built or analysed.]", "fr": "[Ce que vous avez construit ou analysé.]" },
-            { "en": "[The method or tool you used.]", "fr": "[La méthode ou l'outil utilisé.]" },
-            { "en": "[The result or impact.]", "fr": "[Le résultat ou l'impact.]" }
+            { "en": "Developed a sales forecasting system with ML and DL models, comparing approaches and tuning the best performer.", "fr": "Développement d'un système de prévision des ventes avec des modèles de ML et de DL, en comparant les approches et en optimisant la plus performante." },
+            { "en": "Built an automated data pipeline integrated with SQL Server.", "fr": "Création d'un pipeline de données automatisé intégré à SQL Server." },
+            { "en": "Delivered a web application with interactive reporting and visualisation to support business decisions.", "fr": "Livraison d'une application web avec reporting interactif et visualisations pour l'aide à la décision." }
           ],
-          "tools": ["Python", "SQL"]
+          "tools": ["Python", { "en": "Time-series forecasting", "fr": "Prévision de séries temporelles" }, "Machine learning", "Deep learning", "SQL Server"]
+        },
+        {
+          "role": { "en": "Software engineering intern", "fr": "Stagiaire développement logiciel" }, "company": "STIP",
+          "city": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" }, "dates": { "en": "Jun 2024 – Jul 2024", "fr": "Juin 2024 – Juil. 2024" },
+          "points": [
+            { "en": "Designed a SQL Server database and Node.js REST APIs to manage employees, phone numbers and contracts.", "fr": "Conception d'une base SQL Server et d'API REST Node.js pour gérer employés, numéros de téléphone et contrats." },
+            { "en": "Built a user-friendly React and Bootstrap interface for managing assignments.", "fr": "Développement d'une interface conviviale React et Bootstrap pour la gestion des affectations." },
+            { "en": "Centralised the data, with automatic number assignment, change tracking and role-based access control.", "fr": "Centralisation des données, avec attribution automatique des numéros, suivi des modifications et gestion des rôles." }
+          ],
+          "tools": ["Node.js", "SQL Server", "REST API", "React", "Bootstrap"]
         }
       ]
     },
@@ -69,10 +112,75 @@
       "id": "projects", "kind": "project",
       "title": { "en": "Projects", "fr": "Projets" },
       "scrolls": [
-        { "title": { "en": "[Pricing project]", "fr": "[Projet de tarification]" }, "category": "actuarial", "summary": { "en": "[Two lines — problem, data, method, result.]", "fr": "[Deux lignes — problème, données, méthode, résultat.]" }, "illustration": "none", "tools": ["GLM", "R"], "links": [] },
-        { "title": { "en": "[Reserving project]", "fr": "[Projet de provisionnement]" }, "category": "actuarial", "summary": { "en": "[Two lines — problem, data, method, result.]", "fr": "[Deux lignes — problème, données, méthode, résultat.]" }, "illustration": "triangle", "tools": ["Chain ladder", "Bootstrap", "Python"], "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/your-profile" }] },
-        { "title": { "en": "[ML project]", "fr": "[Projet ML]" }, "category": "data", "summary": { "en": "[Two lines — what it predicts, data, result.]", "fr": "[Deux lignes — ce qu'il prédit, données, résultat.]" }, "illustration": "none", "tools": ["Python", "scikit-learn"], "links": [] },
-        { "title": { "en": "[Thesis]", "fr": "[Mémoire]" }, "category": "actuarial", "summary": { "en": "[Two lines — question, method, conclusion.]", "fr": "[Deux lignes — question, méthode, conclusion.]" }, "illustration": "none", "tools": ["[Method]"], "links": [] }
+        {
+          "title": { "en": "Actuarial portfolio heterogeneity study", "fr": "Hétérogénéité d'un portefeuille actuariel" }, "category": "actuarial",
+          "summary": {
+            "en": "Modelled mortality rates of French smokers and non-smokers (1950 cohort) with the Lee-Carter model, projected future trends, and designed fair annuity pricing strategies for both groups.",
+            "fr": "Modélisation des taux de mortalité des fumeurs et non-fumeurs français (cohorte 1950) avec le modèle de Lee-Carter, projection des tendances, et conception de stratégies de tarification de rentes équitables pour les deux groupes."
+          },
+          "illustration": "none", "tools": ["Lee-Carter", { "en": "Mortality projection", "fr": "Projection de mortalité" }, { "en": "Annuity pricing", "fr": "Tarification des rentes" }, "R"], "links": []
+        },
+        {
+          "title": { "en": "AI platform for medical insurance documents", "fr": "Plateforme IA pour documents médicaux d'assurance" }, "category": "data",
+          "summary": {
+            "en": "ESPRIT integrated project (Jan–May 2025). Processes handwritten medical documents in Arabic and Latin script: YOLOv11 classification, fine-tuned OCR with LLaMA 3 correction, signature-based fraud detection (Siamese network), and a RAG chatbot for identity checks. It also estimates reimbursements, all on Kafka microservices.",
+            "fr": "Projet intégré ESPRIT (janv.–mai 2025). Traite des documents médicaux manuscrits en arabe et en latin : classification YOLOv11, OCR fine-tuné avec correction LLaMA 3, détection de fraude par signature (réseau siamois) et chatbot RAG pour la vérification d'identité. Il estime aussi les remboursements, le tout sur des microservices Kafka."
+          },
+          "illustration": "none", "tools": ["YOLOv11", "OCR", "LLaMA 3", "RAG", { "en": "Siamese network", "fr": "Réseau siamois" }, "Selenium", "FastAPI", "Docker", "Kafka"], "links": []
+        },
+        {
+          "title": { "en": "Customer churn prediction", "fr": "Prédiction du churn client" }, "category": "data",
+          "summary": {
+            "en": "Telecom churn pipeline (Sep–Dec 2024). Supervised models (Random Forest, Decision Tree) on SMOTE-balanced data, plus PCA and K-Means to surface the main churn drivers. Deployed with joblib-persisted scalers behind a REST API.",
+            "fr": "Pipeline de churn télécom (sept.–déc. 2024). Modèles supervisés (Random Forest, Decision Tree) sur données rééquilibrées par SMOTE, plus ACP et K-Means pour identifier les principaux facteurs d'attrition. Déploiement avec scalers persistés via joblib derrière une API REST."
+          },
+          "illustration": "none", "tools": ["Python", "scikit-learn", "SMOTE", "PCA", "K-Means", "REST API"],
+          "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/YassineBenMaktouf/Customer-Churn" }]
+        },
+        {
+          "title": { "en": "Audio emotion recognition", "fr": "Reconnaissance des émotions audio" }, "category": "data",
+          "summary": {
+            "en": "Built a diffusion model with ResNet-50 to improve emotion recognition from speech, tested on the EmoDB and RAVDESS datasets, with a Python pipeline that generates mel-spectrograms.",
+            "fr": "Création d'un modèle de diffusion avec ResNet-50 pour améliorer la reconnaissance des émotions dans la voix, testé sur EmoDB et RAVDESS, avec un pipeline Python de génération de mel-spectrogrammes."
+          },
+          "illustration": "none", "tools": [{ "en": "Diffusion model", "fr": "Modèle de diffusion" }, "ResNet-50", "PyTorch", "EmoDB", "RAVDESS"], "links": []
+        },
+        {
+          "title": { "en": "Imaginify AI · hackathon winner", "fr": "Imaginify AI · lauréat de hackathon" }, "category": "data",
+          "summary": {
+            "en": "1st place, lablab.ai Special AI Models Hack (Jan 2024). A web app that writes personalised interactive stories, illustrates them with generated images, and adds a smart dictionary plus speech-to-text and text-to-speech.",
+            "fr": "1re place, Special AI Models Hack de lablab.ai (janv. 2024). Application web qui génère des histoires interactives personnalisées, les illustre par des images générées, et ajoute un dictionnaire intelligent ainsi que la reconnaissance et la synthèse vocales."
+          },
+          "illustration": "none", "tools": ["Python", "Flask", "OpenAI", "Hugging Face"],
+          "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/YassineBenMaktouf/Imaginify-AI" }]
+        },
+        {
+          "title": { "en": "FinAssist · AI finance assistant", "fr": "FinAssist · assistant financier IA" }, "category": "data",
+          "summary": {
+            "en": "2nd place, lablab ChatHack (Dec 2023). Led a team building a personal-finance web app that analyses Excel financial data, delivers personalised insights and charts, and answers questions through a chatbot.",
+            "fr": "2e place, ChatHack de lablab (déc. 2023). Pilotage d'une équipe pour une application web de finances personnelles qui analyse des données financières Excel, fournit analyses et graphiques personnalisés, et répond aux questions via un chatbot."
+          },
+          "illustration": "none", "tools": ["Python", "Django", "ChatGPT", "Whisper", "LangChain"],
+          "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/YassineBenMaktouf/ChatHack-EchoMinds" }]
+        },
+        {
+          "title": { "en": "LinguaSync AI · language learning", "fr": "LinguaSync AI · apprentissage des langues" }, "category": "data",
+          "summary": {
+            "en": "lablab GPT-4 App Creation & Evals Hackathon (Feb 2024). An educational web app that generates practice exercises with OpenAI models, with a chatbot tutor that answers questions and gives advice. Evaluated with TruLens.",
+            "fr": "Hackathon GPT-4 App Creation & Evals de lablab (févr. 2024). Application web éducative qui génère des exercices avec les modèles OpenAI, avec un chatbot professeur qui répond aux questions et conseille. Évaluation avec TruLens."
+          },
+          "illustration": "none", "tools": ["Python", "Flask", "MongoDB", "OpenAI", "TruLens"],
+          "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/YassineBenMaktouf/LinguaSync-AI" }]
+        },
+        {
+          "title": { "en": "Branding Assistant · custom GPT", "fr": "Branding Assistant · GPT personnalisé" }, "category": "data",
+          "summary": {
+            "en": "lablab Build Your Custom GPTs 24-hour hackathon (Jan 2024). A custom GPT that guides new brands step by step through brand creation and helps established brands plan a rebrand.",
+            "fr": "Hackathon de 24 h Build Your Custom GPTs de lablab (janv. 2024). Un GPT personnalisé qui guide pas à pas les nouvelles marques dans leur création et aide les marques établies à préparer leur repositionnement."
+          },
+          "illustration": "none", "tools": ["Custom GPT", { "en": "Prompt engineering", "fr": "Prompt engineering" }],
+          "links": [{ "label": { "en": "GitHub" }, "url": "https://github.com/YassineBenMaktouf/Branding-Assistant" }]
+        }
       ]
     },
     {
@@ -82,17 +190,43 @@
         {
           "type": "skills",
           "groups": [
-            { "name": { "en": "Actuarial", "fr": "Actuariat" }, "items": [{ "en": "Pricing", "fr": "Tarification" }, { "en": "Reserving", "fr": "Provisionnement" }, "IFRS 17", "Solvency II"] },
-            { "name": { "en": "Data science", "fr": "Science des données" }, "items": ["Python", "R", "SQL", "Machine learning"] },
-            { "name": { "en": "Tools", "fr": "Outils" }, "items": ["Excel · VBA", "Power BI", "Git"] },
-            { "name": { "en": "Languages", "fr": "Langues" }, "items": [{ "en": "French", "fr": "Français" }, { "en": "English", "fr": "Anglais" }, { "en": "Arabic", "fr": "Arabe" }] }
+            { "name": { "en": "Actuarial & risk", "fr": "Actuariat & risques" }, "items": [
+              { "en": "Mortality modelling (Lee-Carter)", "fr": "Modélisation de la mortalité (Lee-Carter)" },
+              { "en": "Annuity pricing", "fr": "Tarification des rentes" },
+              { "en": "Risk modelling", "fr": "Modélisation des risques" },
+              { "en": "Retirement & savings products", "fr": "Produits d'épargne retraite" }
+            ] },
+            { "name": { "en": "Machine learning & AI", "fr": "Machine learning & IA" }, "items": ["Machine learning", "Deep learning", "NLP", "LLM", "RAG", "TensorFlow", "PyTorch", "Keras", "scikit-learn", "Hugging Face", "YOLO"] },
+            { "name": { "en": "Programming", "fr": "Programmation" }, "items": ["Python", "R", "SQL", "Java", "JavaScript", "C", "C#"] },
+            { "name": { "en": "Frameworks", "fr": "Frameworks" }, "items": ["FastAPI", "Flask", "Spring Boot", ".NET", "React", "Tailwind CSS"] },
+            { "name": { "en": "MLOps & data", "fr": "MLOps & données" }, "items": ["Docker", "Kafka", "MLflow", "GitHub Actions", "CI/CD", "SQL Server", "MongoDB", "MySQL", "SQLite"] }
           ]
         },
         {
           "type": "certifications",
           "items": [
-            { "name": { "en": "[Certification name]", "fr": "[Nom de la certification]" }, "issuer": "[Issuer]", "year": "[Year]" },
-            { "name": { "en": "[Certification name]", "fr": "[Nom de la certification]" }, "issuer": "[Issuer]", "year": "[Year]" }
+            { "name": { "en": "AWS Academy Graduate · Cloud Foundations", "fr": "AWS Academy Graduate · Cloud Foundations" }, "issuer": "AWS Academy", "year": "2025", "url": "https://www.credly.com/go/rRdlby4k" },
+            { "name": { "en": "Building Transformer-Based NLP Applications", "fr": "Applications NLP à base de Transformers" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=R739A7ejST66L-EK3d58cA" },
+            { "name": { "en": "Evaluation and Light Customization of LLMs", "fr": "Évaluation et personnalisation légère des LLM" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=-zjxcLeJQgWU1JebwIFwHw" },
+            { "name": { "en": "Applications of AI for Anomaly Detection", "fr": "IA pour la détection d'anomalies" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=CVmW-FSaTSWafbchsKk7Hg" },
+            { "name": { "en": "Hashgraph Developer Course", "fr": "Hashgraph Developer Course" }, "issuer": "The Hashgraph Association", "year": "2025" },
+            { "name": { "en": "Machine Learning with Python", "fr": "Machine Learning avec Python" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/VHFKYK85TDWB" },
+            { "name": { "en": "Deep Learning & Neural Networks with Keras", "fr": "Deep Learning et réseaux de neurones avec Keras" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/UYDTYP99UXGH" },
+            { "name": { "en": "Introduction to Artificial Intelligence", "fr": "Introduction à l'intelligence artificielle" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/F8AA45L6P998" },
+            { "name": { "en": "CCNA: Introduction to Networks", "fr": "CCNA : Introduction aux réseaux" }, "issuer": "Cisco" }
+          ]
+        },
+        {
+          "type": "certifications",
+          "title": { "en": "Awards & involvement", "fr": "Distinctions & engagement" },
+          "items": [
+            { "name": { "en": "1st place · Special AI Models Hack", "fr": "1re place · Special AI Models Hack" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.me/certificate/6GZBWIV73IMO" },
+            { "name": { "en": "2nd place · ChatHack", "fr": "2e place · ChatHack" }, "issuer": "lablab.ai", "year": "2023", "url": "https://lablab.me/certificate/IJXXCZB84JSE" },
+            { "name": { "en": "GPT-4 App Creation & Evals Hackathon", "fr": "Hackathon GPT-4 App Creation & Evals" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.ai/certificate/N419BXCRVGJ8" },
+            { "name": { "en": "Build Your Custom GPTs · 24-hour hackathon", "fr": "Build Your Custom GPTs · hackathon de 24 h" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.ai/certificate/04OD1UJJM5RV" },
+            { "name": { "en": "NASA International Space Apps Challenge", "fr": "NASA International Space Apps Challenge" }, "issuer": "NASA", "year": "2024" },
+            { "name": { "en": "Secretary General · ATAST Association", "fr": "Secrétaire général · Association ATAST" }, "issuer": "ATAST", "year": "2023 – 2024" },
+            { "name": { "en": "Member · IEEE", "fr": "Membre · IEEE" }, "issuer": "IEEE", "year": "2023 – 2024" }
           ]
         }
       ]

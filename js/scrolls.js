@@ -55,9 +55,13 @@ const RENDERERS = {
   },
   skills({ item, lang, t }) {
     if (item.type === 'certifications') {
-      const certs = (item.items || []).map((c) => `<li><span class="seal" aria-hidden="true"></span><span>${e(pick(c.name, lang))}`
-        + `<small>${e([pick(c.issuer, lang), pick(c.year, lang)].filter(Boolean).join(' · '))}</small></span></li>`).join('');
-      return `<h3 class="scroll-title">${e(t('certs.title'))}</h3><ul class="certs">${certs}</ul>`;
+      const certs = (item.items || []).map((c) => {
+        const name = pick(c.name, lang);
+        const label = c.url && safeUrl(c.url) !== '#' ? externalLink(c.url, name) : e(name);
+        return `<li><span class="seal" aria-hidden="true"></span><span>${label}`
+          + `<small>${e([pick(c.issuer, lang), pick(c.year, lang)].filter(Boolean).join(' · '))}</small></span></li>`;
+      }).join('');
+      return `<h3 class="scroll-title">${e(pick(item.title, lang) || t('certs.title'))}</h3><ul class="certs">${certs}</ul>`;
     }
     const groups = (item.groups || []).map((g) => `<div class="skill-group"><h4>${e(pick(g.name, lang))}</h4>${tags(g.items, lang)}</div>`).join('');
     return `<h3 class="scroll-title">${e(t('skills.title'))}</h3>${groups}`;
@@ -85,7 +89,7 @@ export function scrollLabel({ island, item, lang, t }) {
     case 'education': return pick(item.degree, lang);
     case 'experience': return pick(item.role, lang);
     case 'project': return pick(item.title, lang);
-    case 'skills': return item.type === 'certifications' ? t('certs.title') : t('skills.title');
+    case 'skills': return item.type === 'certifications' ? (pick(item.title, lang) || t('certs.title')) : t('skills.title');
     default: return island.title;
   }
 }

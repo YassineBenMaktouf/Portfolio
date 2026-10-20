@@ -112,3 +112,23 @@ test('cvHref returns the CV for the language and neutralises unsafe values', () 
   assert.equal(cvHref({ ...p, cv: { en: 'javascript:alert(1)' } }, 'en'), '#');
   assert.equal(cvHref({ ...p, cv: null }, 'en'), '#');
 });
+
+test('a certifications scroll can carry its own title and verification links', () => {
+  const c = fixtureContent();
+  c.islands[4].scrolls[1] = {
+    type: 'certifications', title: { en: 'Hackathons & awards', fr: 'Hackathons & distinctions' },
+    items: [
+      { name: { en: 'Linked cert' }, issuer: 'Org', year: '2024', url: 'https://example.com/verify/1' },
+      { name: { en: 'Bad link' }, url: 'javascript:alert(1)' }
+    ]
+  };
+  const html = render(4, 1, c);
+  assert.ok(html.includes('Hackathons &amp; awards'));
+  assert.ok(!html.includes('>Certifications<'));
+  assert.ok(html.includes('href="https://example.com/verify/1"'));
+  assert.ok(html.includes('rel="noopener noreferrer"'));
+  assert.ok(!html.includes('javascript:'));
+  assert.ok(render(4, 1, c, 'fr', tFr).includes('Hackathons &amp; distinctions'));
+  const meta = islandMeta(c, 'en');
+  assert.equal(scrollLabel({ island: meta[4], item: c.islands[4].scrolls[1], lang: 'en', t }), 'Hackathons & awards');
+});
