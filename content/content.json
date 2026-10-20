@@ -19,8 +19,8 @@
             "fr": "Actuaire et ingénieur en data science, fraîchement diplômé d'un double cursus : Master en Actuariat à l'Institut du Risque et de l'Assurance (Le Mans Université) et ingénierie en Data Science à ESPRIT. Je me concentre sur la modélisation des risques et l'analytique de l'assurance, en appliquant le machine learning, le NLP et les LLM à des problématiques actuarielles et financières. Dernièrement, j'ai conçu un copilote IA pour des produits d'épargne retraite chez Vermeg. Je recherche un premier poste à la croisée de l'actuariat et de la data science."
           },
           "homePort": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" },
-          "languages": { "en": "Arabic & English (bilingual) · French (professional)", "fr": "Arabe & anglais (bilingue) · français (professionnel)" },
-          "seeking": { "en": "Actuarial / data science role · available now", "fr": "Poste en actuariat / data science · disponible" }
+          "languages": { "en": "Arabic · English · French", "fr": "Arabe · Anglais · Français" },
+          "seeking": { "en": "Actuary / data science role · available now", "fr": "Poste d'actuaire / data science · disponible" }
         }
       ]
     },
@@ -32,19 +32,19 @@
           "degree": { "en": "Master's in Actuarial Science", "fr": "Master en Actuariat" },
           "school": { "en": "Institut du Risque et de l'Assurance · Le Mans University", "fr": "Institut du Risque et de l'Assurance · Le Mans Université" }, "city": { "en": "Le Mans, France", "fr": "Le Mans, France" }, "years": "2024 – 2026",
           "summary": {
-            "en": "Double degree with ESPRIT's actuarial track. Actuarial modelling of insurance risk; projects included Lee-Carter mortality modelling and annuity pricing.",
-            "fr": "Double diplôme avec l'option actuariat d'ESPRIT. Modélisation actuarielle des risques d'assurance ; projets dont la modélisation de la mortalité (Lee-Carter) et la tarification des rentes."
+            "en": "Double degree with ESPRIT's actuarial track. Focused on the actuarial modelling of insurance risk.",
+            "fr": "Double diplôme avec l'option actuariat d'ESPRIT. Centré sur la modélisation actuarielle des risques d'assurance."
           },
-          "courses": []
+          "courses": [{"en": "Life actuarial science", "fr": "Actuariat vie"}, {"en": "Non-life actuarial science", "fr": "Actuariat non vie"}, {"en": "Risk theory", "fr": "Théorie du risque"}, {"en": "Reinsurance & extreme risks", "fr": "Réassurance & risques extrêmes"}, {"en": "Insurance regulation & prudential standards", "fr": "Réglementation & normes prudentielles en assurance"}, {"en": "Stochastic models for actuarial science", "fr": "Modèles aléatoires pour l'actuariat"}, {"en": "Monte Carlo methods", "fr": "Méthodes de Monte Carlo"}]
         },
         {
           "degree": { "en": "Data Science Engineering · Actuarial track", "fr": "Ingénierie en Data Science · option Actuariat" },
           "school": "ESPRIT", "city": { "en": "Tunis, Tunisia", "fr": "Tunis, Tunisie" }, "years": "2023 – 2026",
           "summary": {
-            "en": "Engineering degree in data science with an actuarial track: life and non-life actuarial science, risk theory, reinsurance and prudential regulation, alongside machine learning, deep learning, big data and MLOps.",
-            "fr": "Diplôme d'ingénieur en data science, option actuariat : actuariat vie et non-vie, théorie du risque, réassurance et réglementation prudentielle, ainsi que machine learning, deep learning, big data et MLOps."
+            "en": "Engineering degree in data science with an actuarial track (double degree with Le Mans). Machine learning, deep learning, big data and MLOps through hands-on projects.",
+            "fr": "Diplôme d'ingénieur en data science, option actuariat (double diplôme avec Le Mans). Machine learning, deep learning, big data et MLOps à travers des projets concrets."
           },
-          "courses": [{"en": "Life actuarial science", "fr": "Actuariat vie"}, {"en": "Non-life actuarial science", "fr": "Actuariat non vie"}, {"en": "Risk theory", "fr": "Théorie du risque"}, {"en": "Reinsurance & extreme risks", "fr": "Réassurance & risques extrêmes"}, {"en": "Insurance regulation & prudential standards", "fr": "Réglementation & normes prudentielles en assurance"}, {"en": "Stochastic models for actuarial science", "fr": "Modèles aléatoires pour l'actuariat"}, {"en": "Monte Carlo methods", "fr": "Méthodes de Monte Carlo"}, {"en": "Time series", "fr": "Séries temporelles"}, "Advanced machine learning", "Advanced deep learning", "Big data", "MLOps · DevOps"]
+          "courses": ["Advanced machine learning", "Advanced deep learning", {"en": "Time series", "fr": "Séries temporelles"}, "Big data", "MLOps · DevOps", {"en": "Optimisation for ML", "fr": "Optimisation pour le ML"}, {"en": "Probability & statistics", "fr": "Probabilités & statistiques"}, {"en": "Operations research", "fr": "Recherche opérationnelle"}, "AWS"]
         },
         {
           "degree": { "en": "Preparatory classes · Mathematics–Physics", "fr": "Cycle préparatoire · Math–Physique" },
