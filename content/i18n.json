@@ -56,7 +56,8 @@
     "cv.french": "Français",
     "cv.download": "Download PDF",
     "cv.close": "Close the CV chooser",
-    "cv.previewAlt": "Preview of the {label} CV"
+    "cv.previewAlt": "Preview of the {label} CV",
+    "landing.status": "Available now"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -115,6 +116,7 @@
     "cv.french": "Français",
     "cv.download": "Télécharger le PDF",
     "cv.close": "Fermer le choix du CV",
-    "cv.previewAlt": "Aperçu du CV {label}"
+    "cv.previewAlt": "Aperçu du CV {label}",
+    "landing.status": "Disponible immédiatement"
   }
 }

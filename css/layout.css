@@ -185,3 +185,11 @@ html.modal-open { overflow: hidden; }
   .cv-preview-wrap img { max-height: 46vh; }
   .cv-preview-bar { justify-content: center; }
 }
+
+/* ---- availability line on the title card ---- */
+.title-card-status { margin: 2px 0 0; display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px; border: 1px solid var(--brass); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); }
+.status-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #2F6B4F; flex: none; }
+.status-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid #2F6B4F; opacity: 0; animation: status-pulse 2.4s ease-out infinite; }
+@keyframes status-pulse { 0% { transform: scale(0.6); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .status-dot::after { animation: none; } }
+@media (max-width: 767px) { .title-card-status { font-size: 10.5px; letter-spacing: 0.18em; padding: 6px 12px; } }
