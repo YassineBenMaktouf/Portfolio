@@ -3,6 +3,5 @@ node_modules/
 Thumbs.db
 .claude/
 .superpowers/
-cv/
 docs/
 tests/
