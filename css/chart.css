@@ -8,7 +8,7 @@
 .label-full { font-family: var(--font-display); fill: var(--ink); opacity: var(--full-mix, 1); }
 .label-full .num { font-family: var(--font-mono); fill: var(--brass-dark); letter-spacing: 0.22em; }
 .label-full .name { font-style: italic; }
-.label-zoom { font-family: var(--font-display); fill: var(--ink-name); letter-spacing: 0.2em; opacity: var(--zoom-mix, 0); }
+.label-zoom { font-family: var(--font-display); font-style: italic; fill: var(--ink-name); letter-spacing: 0.01em; opacity: var(--zoom-mix, 0); }
 .route { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 2 6; }
 .route-done { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 0 99999; }
 .compass-ring { fill: none; stroke: var(--ink); stroke-width: 1; }

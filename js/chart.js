@@ -15,7 +15,7 @@ export function splitTitle(title) {
 
 export function zoomFontSize(island, lines) {
   const longest = Math.max(1, ...lines.map((l) => l.length));
-  return +Math.min(island.R * 0.32, (1.6 * island.R * SX) / (longest * 0.92)).toFixed(2);
+  return +Math.min(island.R * 0.32, (1.6 * island.R * SX) / (longest * 0.56)).toFixed(2);
 }
 
 export function labelsMarkup(island, title, islandWord = 'Island') {
@@ -29,7 +29,7 @@ export function labelsMarkup(island, title, islandWord = 'Island') {
     + '</text>';
   const zoomTop = island.cy - ((lines.length - 1) * zoomSize * 1.3) / 2 + zoomSize * 0.35;
   const zoom = `<text class="label-zoom" x="${island.cx}" y="${zoomTop.toFixed(1)}" text-anchor="middle" font-size="${zoomSize}">`
-    + lines.map((l, i) => `<tspan x="${island.cx}" dy="${i === 0 ? 0 : zoomSize * 1.3}">${escapeHTML(l.toUpperCase())}</tspan>`).join('')
+    + lines.map((l, i) => `<tspan x="${island.cx}" dy="${i === 0 ? 0 : zoomSize * 1.3}">${escapeHTML(l)}</tspan>`).join('')
     + '</text>';
   return full + zoom;
 }
