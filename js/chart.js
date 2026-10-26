@@ -34,13 +34,30 @@ export function labelsMarkup(island, title, islandWord = 'Island') {
   return full + zoom;
 }
 
+// Scroll icon, drawn twice: a rolled scroll tied with a cord and wax seal (not read yet) and an
+// unrolled parchment with rollers, a torn edge and lines of text (open, or already read).
+const SEALED = '<g class="sealed" transform="rotate(-32)">'
+  + '<rect class="tube" x="-11" y="-4.2" width="21" height="8.4" rx="4.2"/>'
+  + '<ellipse class="tube-end" cx="-10.2" cy="0" rx="2.6" ry="4.2"/>'
+  + '<path class="tube-curl" d="M-10.2 -1.6 a1.6 1.6 0 1 1 -0.1 0 M-10.2 -0.5 a0.5 0.5 0 1 1 -0.05 0"/>'
+  + '<rect class="cord" x="-1.4" y="-4.6" width="2.8" height="9.2" rx="0.6"/>'
+  + '<path class="cord-tail" d="M0.8 3.2 q3.2 3.6 7.4 2.6 M-0.4 3.6 q1.4 4.6 5.2 6.6"/>'
+  + '<circle class="wax" r="3.1"/><circle class="wax-ring" r="1.7"/>'
+  + '</g>';
+const UNROLLED = '<g class="unrolled">'
+  + '<path class="sheet" d="M-6.8 -6.6 H6.8 C7.5 -2.4 7.5 2.4 6.8 6.6 H-6.8 L-6 4.6 L-7.4 3.2 L-6.1 1.4 L-7.2 -0.6 L-6 -2.4 L-7.4 -4.2 Z"/>'
+  + '<path class="lines" d="M-3.2 -3.6 H4.4 M-4.2 -1.2 H4.4 M-4.6 1.3 H4.4 M-4.2 3.8 H4.4"/>'
+  + '<rect class="cap" x="-10.6" y="-10.2" width="2.6" height="3.4" rx="0.7"/><rect class="cap" x="8" y="-10.2" width="2.6" height="3.4" rx="0.7"/>'
+  + '<rect class="cap" x="-10.6" y="6.8" width="2.6" height="3.4" rx="0.7"/><rect class="cap" x="8" y="6.8" width="2.6" height="3.4" rx="0.7"/>'
+  + '<rect class="roller-l" x="-8.6" y="-11" width="17.2" height="5" rx="2.5"/>'
+  + '<rect class="roller-l" x="-8.6" y="6" width="17.2" height="5" rx="2.5"/>'
+  + '</g>';
+
 function iconMarkup([x, y], j) {
-  return `<g class="scroll-icon" data-scroll="${j}" data-status="hidden" transform="translate(${x} ${y}) scale(0.6)">`
-    + '<circle class="halo" r="14"/>'
-    + '<rect class="paper" x="-6" y="-8" width="12" height="16" rx="1.5"/>'
-    + '<rect class="rod" x="-8" y="-10" width="16" height="4" rx="2"/>'
-    + '<rect class="rod" x="-8" y="6" width="16" height="4" rx="2"/>'
-    + '<path class="tick" d="M-5 15 l3 3 l7 -8"/>'
+  return `<g class="scroll-icon" data-scroll="${j}" data-status="hidden" transform="translate(${x} ${y}) scale(0.72)">`
+    + '<circle class="halo" r="15"/>'
+    + SEALED + UNROLLED
+    + '<path class="tick" d="M-5 16 l3 3 l7 -8"/>'
     + '</g>';
 }
 

@@ -21,8 +21,23 @@
 .boat .sail-main { fill: var(--brass); }
 .boat .sail-jib { fill: var(--ink); opacity: 0.75; }
 .scroll-icon { transition: opacity 0.35s ease; }
-.scroll-icon .paper { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
-.scroll-icon .rod { fill: var(--roller); }
+/* rolled and sealed (unread) */
+.scroll-icon .tube { fill: #EFD9AA; stroke: var(--ink); stroke-width: 0.8; }
+.scroll-icon .tube-end { fill: #E2C088; stroke: var(--ink); stroke-width: 0.8; }
+.scroll-icon .tube-curl { fill: none; stroke: #9A7440; stroke-width: 0.6; }
+.scroll-icon .cord { fill: var(--seal); }
+.scroll-icon .cord-tail { fill: none; stroke: var(--seal); stroke-width: 0.8; stroke-linecap: round; }
+.scroll-icon .wax { fill: var(--seal); stroke: #74222A; stroke-width: 0.8; }
+.scroll-icon .wax-ring { fill: none; stroke: #E9C9B0; stroke-width: 0.5; opacity: 0.7; }
+/* unrolled parchment (open or read) */
+.scroll-icon .sheet { fill: #E9C994; stroke: var(--ink); stroke-width: 0.8; stroke-linejoin: round; }
+.scroll-icon .lines { fill: none; stroke: #A9773F; stroke-width: 1.1; stroke-linecap: round; }
+.scroll-icon .roller-l { fill: #F4DDAE; stroke: var(--ink); stroke-width: 0.8; }
+.scroll-icon .cap { fill: var(--roller-cap); stroke: var(--ink); stroke-width: 0.6; }
+.scroll-icon .sealed, .scroll-icon .unrolled { transition: opacity 0.3s ease; }
+.scroll-icon .unrolled { opacity: 0; }
+.scroll-icon[data-status="open"] .sealed, .scroll-icon[data-status="read"] .sealed { opacity: 0; }
+.scroll-icon[data-status="open"] .unrolled, .scroll-icon[data-status="read"] .unrolled { opacity: 1; }
 .scroll-icon .halo { fill: var(--brass); opacity: 0; transition: opacity 0.3s; }
 .scroll-icon .tick { fill: none; stroke: var(--brass-dark); stroke-width: 2; opacity: 0; }
 .scroll-icon[data-status="hidden"] { opacity: 0; }
