@@ -9,6 +9,10 @@
     "github": "https://github.com/YassineBenMaktouf",
     "cv": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" },
     "cvs": [
+      { "role": { "en": "General", "fr": "Général" },
+        "note": { "en": "Both profiles, balanced.", "fr": "Les deux profils, équilibrés." },
+        "files": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" },
+        "previews": { "en": "img/cv/CV-Yassine-Ben-Maktouf-EN.webp", "fr": "img/cv/CV-Yassine-Ben-Maktouf-FR.webp" } },
       { "role": { "en": "Actuarial", "fr": "Actuariat" },
         "note": { "en": "For actuarial roles: life, pensions, pricing and risk.", "fr": "Pour les postes en actuariat : vie, retraite, tarification et risques." },
         "files": { "en": "cv/CV-Yassine-Ben-Maktouf-Actuarial-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-Actuariat-FR.pdf" },
@@ -16,11 +20,7 @@
       { "role": { "en": "Data science", "fr": "Data science" },
         "note": { "en": "For data scientist and machine learning engineer roles.", "fr": "Pour les postes de data scientist et d'ingénieur machine learning." },
         "files": { "en": "cv/CV-Yassine-Ben-Maktouf-DataScience-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-DataScience-FR.pdf" },
-        "previews": { "en": "img/cv/CV-Yassine-Ben-Maktouf-DataScience-EN.webp", "fr": "img/cv/CV-Yassine-Ben-Maktouf-DataScience-FR.webp" } },
-      { "role": { "en": "General", "fr": "Général" },
-        "note": { "en": "Both profiles, balanced.", "fr": "Les deux profils, équilibrés." },
-        "files": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" },
-        "previews": { "en": "img/cv/CV-Yassine-Ben-Maktouf-EN.webp", "fr": "img/cv/CV-Yassine-Ben-Maktouf-FR.webp" } }
+        "previews": { "en": "img/cv/CV-Yassine-Ben-Maktouf-DataScience-EN.webp", "fr": "img/cv/CV-Yassine-Ben-Maktouf-DataScience-FR.webp" } }
     ]
   },
   "islands": [
