@@ -207,3 +207,17 @@ html.modal-open { overflow: hidden; }
   .tour-btn { margin-left: 10px; width: 30px; height: 30px; padding: 0; justify-content: center; border-radius: 50%; }
   .tour-label { display: none; }
 }
+
+/* ---- sea life: wave marks, a rare leaping fish, click ripples ---- */
+.seafx { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+.seafx .fx { position: absolute; overflow: visible; }
+.fx-ring { fill: none; stroke: var(--ink); stroke-width: 1; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; opacity: 0; animation: fx-ring 1.6s ease-out forwards; }
+.fx-wave { fill: none; stroke: var(--ink); stroke-width: 1; stroke-linecap: round; stroke-dasharray: 24 24; opacity: 0; animation: fx-wave 3.6s ease-in-out forwards; }
+.fx-wave-2 { animation-delay: 0.25s; }
+.fx-drop { fill: var(--ink); animation: fx-drop 0.7s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; }
+.fx-fish { fill: var(--ink); offset-path: path('M-22 6 Q0 -26 22 6'); offset-rotate: auto; opacity: 0; animation: fx-jump 1.3s ease-in-out forwards; }
+@keyframes fx-ring { 0% { transform: scale(0.05); opacity: 0.5; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes fx-wave { 0% { stroke-dashoffset: 24; opacity: 0; } 30% { opacity: 0.55; } 70% { opacity: 0.55; } 100% { stroke-dashoffset: -24; opacity: 0; } }
+@keyframes fx-drop { 0% { transform: translate(0, 0); opacity: 0.8; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+@keyframes fx-jump { 0% { offset-distance: 0%; opacity: 0; } 12% { opacity: 0.85; } 88% { opacity: 0.85; } 100% { offset-distance: 100%; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .seafx { display: none; } }

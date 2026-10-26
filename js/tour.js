@@ -84,5 +84,5 @@ export function initTour({ btn, t, getApp }) {
   document.addEventListener('pointerdown', (ev) => { if (!btn.contains(ev.target)) stop(); });
 
   render();
-  return { stop, refresh: render };
+  return { stop, refresh: render, isPlaying: () => playing };
 }

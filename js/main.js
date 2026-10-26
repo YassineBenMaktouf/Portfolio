@@ -12,6 +12,7 @@ import { initCertModal } from './certmodal.js';
 import { initContactModal } from './contactform.js';
 import { initCvModal } from './cvmodal.js';
 import { initTour } from './tour.js';
+import { initSeaFx } from './seafx.js';
 
 function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
@@ -154,6 +155,15 @@ async function boot() {
 
   initCertModal({ dialog: document.getElementById('cert-modal'), t: (k, v) => i18n.t(k, v) });
   app.tour = initTour({ btn: document.getElementById('tour-btn'), t: (k, v) => i18n.t(k, v), getApp: () => app });
+  initSeaFx({
+    stage: document.getElementById('stage'), layer: document.getElementById('seafx'),
+    getState: () => ({
+      reducedMotion: motionQuery.matches, hidden: document.hidden,
+      modalOpen: document.documentElement.classList.contains('modal-open'),
+      touring: Boolean(app.tour?.isPlaying()),
+      reading: app.mode === 'voyage' && !document.getElementById('panel').classList.contains('is-empty')
+    })
+  });
   initCvModal({ dialog: document.getElementById('cv-modal'), t: (k, v) => i18n.t(k, v), getPerson: () => content.person, getLang: () => i18n.lang });
   initContactModal({
     dialog: document.getElementById('contact-modal'), t: (k, v) => i18n.t(k, v),
