@@ -116,8 +116,9 @@ html, body { overflow-x: clip; }
 /* ---- certificate viewer ---- */
 html.modal-open { overflow: hidden; }
 .cert-modal { padding: 0; border: 0; background: transparent; max-width: min(920px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: visible; }
-.cert-modal::backdrop { background: rgba(28, 43, 74, 0.72); }
-.cert-modal-card { position: relative; background: var(--paper); border: 1.5px solid var(--ink); padding: 10px; box-shadow: 0 30px 60px rgba(28, 43, 74, 0.35); }
+/* same look as the landing page: the chart stays faintly visible under a parchment wash */
+.cert-modal::backdrop { background: radial-gradient(ellipse at center, rgba(238, 229, 207, 0.86) 0%, rgba(238, 229, 207, 0.78) 70%); }
+.cert-modal-card { position: relative; background: var(--card); border: 2px solid var(--ink); padding: 12px; box-shadow: 0 30px 70px rgba(28, 43, 74, 0.18); }
 .cert-modal-figure { margin: 0; border: 0.8px solid var(--brass); padding: 18px 18px 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .cert-modal-figure img { display: block; max-width: 100%; max-height: calc(100vh - 170px); width: auto; height: auto; object-fit: contain; border: 1px solid var(--rule-paper); background: var(--card); }
 .cert-modal-title { font-family: var(--font-display); font-style: italic; font-size: 19px; text-align: center; color: var(--ink-name); }
