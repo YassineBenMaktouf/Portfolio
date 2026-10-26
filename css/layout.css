@@ -17,7 +17,7 @@ body[data-phase="landing"] .brand, body[data-phase="unfold"] .brand { opacity: 0
 body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacity: 0; pointer-events: none; visibility: hidden; }
 .markers { transition: opacity 0.3s, visibility 0.3s; }
 .marker { position: relative; display: flex; align-items: center; border: 0; background: transparent; padding: 9px 0; }
-.marker:not(:last-child)::after { content: ''; width: 42px; border-top: 1.5px dashed #8C8266; }
+.marker:not([data-index="4"])::after { content: ''; width: 42px; border-top: 1.5px dashed #8C8266; }
 .marker-dot { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 13px; }
 .marker[data-status="current"] .marker-dot { background: #C49A5A; } /* brass tint: 5.4:1 with ink (plain brass is 4.0:1) */
 .marker[data-status="done"] .marker-dot { background: #D9C9A3; }
@@ -77,7 +77,7 @@ html, body { overflow-x: clip; }
 .mode-linear .markers { position: fixed; top: calc(42vh - 62px); left: 16px; margin: 0; }
 .linear { padding: 24px 16px 80px; }
 .linear-hero { display: flex; justify-content: center; padding: 48px 0 24px; }
-.title-card-static { position: relative; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
+.title-card-static { position: relative; z-index: 1; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
 .leg { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; display: flex; flex-direction: column; gap: 24px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .leg.is-visible, .boot-failed .leg { opacity: 1; transform: none; }
 .mode-linear .leg { scroll-margin-top: calc(42vh + 20px); }
@@ -99,7 +99,7 @@ html, body { overflow-x: clip; }
   .mode-linear .leg { scroll-margin-top: 258px; }
   .mode-linear .markers { top: 196px; }
   .marker-dot { width: 30px; height: 30px; font-size: 11.5px; }
-  .marker:not(:last-child)::after { width: 30px; }
+  .marker:not([data-index="4"])::after { width: 30px; }
   .marker[data-status="done"] .marker-dot::before { font-size: 13px; }
   .linear { padding: 8px 14px 64px; }
   .linear-hero { padding: 40px 0 8px; }
@@ -196,3 +196,14 @@ html.modal-open { overflow: hidden; }
 @keyframes status-pulse { 0% { transform: scale(0.6); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .status-dot::after { animation: none; } }
 @media (max-width: 767px) { .title-card-status { font-size: 10.5px; letter-spacing: 0.18em; padding: 6px 12px; } }
+
+/* ---- automatic voyage button (end of the island markers) ---- */
+.tour-btn { margin-left: 16px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 12px; border: 1.5px solid var(--ink); border-radius: 18px; background: var(--parchment); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+.tour-icon { font-size: 11px; letter-spacing: 0; color: var(--brass-dark); }
+.tour-btn:hover { background: var(--land); }
+.tour-btn[aria-pressed="true"] { background: var(--ink); color: var(--parchment); }
+.tour-btn[aria-pressed="true"] .tour-icon { color: #C49A5A; }
+@media (max-width: 767px) {
+  .tour-btn { margin-left: 10px; width: 30px; height: 30px; padding: 0; justify-content: center; border-radius: 50%; }
+  .tour-label { display: none; }
+}

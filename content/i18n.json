@@ -57,7 +57,11 @@
     "cv.download": "Download PDF",
     "cv.close": "Close the CV chooser",
     "cv.previewAlt": "Preview of the {label} CV",
-    "landing.status": "Available now"
+    "landing.status": "Available now",
+    "tour.play": "Play",
+    "tour.pause": "Pause",
+    "tour.playAria": "Play the voyage automatically",
+    "tour.pauseAria": "Pause the automatic voyage"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -117,6 +121,10 @@
     "cv.download": "Télécharger le PDF",
     "cv.close": "Fermer le choix du CV",
     "cv.previewAlt": "Aperçu du CV {label}",
-    "landing.status": "Disponible immédiatement"
+    "landing.status": "Disponible immédiatement",
+    "tour.play": "Lire",
+    "tour.pause": "Pause",
+    "tour.playAria": "Lancer la visite automatique",
+    "tour.pauseAria": "Mettre la visite en pause"
   }
 }

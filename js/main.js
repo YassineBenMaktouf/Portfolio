@@ -11,6 +11,7 @@ import { ISLANDS } from './layout.js';
 import { initCertModal } from './certmodal.js';
 import { initContactModal } from './contactform.js';
 import { initCvModal } from './cvmodal.js';
+import { initTour } from './tour.js';
 
 function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
@@ -85,6 +86,7 @@ async function boot() {
     syncLinearTabOrder();
     document.querySelectorAll('#lang-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === i18n.lang)));
     app.controller?.refresh();
+    app.tour?.refresh();
   }
 
   renderText();
@@ -115,6 +117,7 @@ async function boot() {
 
   function setMode(next) {
     if (next === app.mode) return;
+    app.tour?.stop();
     const target = app.mode ? currentTarget() : null;
     const switching = app.mode !== null;
     app.controller?.destroy();
@@ -150,6 +153,7 @@ async function boot() {
   document.fonts?.ready.then(() => app.controller.refresh());
 
   initCertModal({ dialog: document.getElementById('cert-modal'), t: (k, v) => i18n.t(k, v) });
+  app.tour = initTour({ btn: document.getElementById('tour-btn'), t: (k, v) => i18n.t(k, v), getApp: () => app });
   initCvModal({ dialog: document.getElementById('cv-modal'), t: (k, v) => i18n.t(k, v), getPerson: () => content.person, getLang: () => i18n.lang });
   initContactModal({
     dialog: document.getElementById('contact-modal'), t: (k, v) => i18n.t(k, v),

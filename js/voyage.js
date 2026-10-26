@@ -140,6 +140,7 @@ export function createVoyage(app) {
       if (instant) { proxy.p = clamp01(p); render(proxy.p); }
     },
     getState() { return current; },
+    getProgress() { return lastProgress; },
     // Undo everything the voyage set, so the linear page starts from a clean DOM (window shrank below the breakpoint).
     destroy() {
       destroyed = true;
