@@ -1,6 +1,7 @@
 import { pick } from './content.js';
 import { escapeHTML as e, safeUrl } from './escape.js';
 import { ISLANDS } from './layout.js';
+import { iconWrite, iconCv } from './icons.js';
 
 export function islandMeta(content, lang) {
   return content.islands.map((isl, i) => ({ id: isl.id, num: ISLANDS[i].num, kind: isl.kind, title: pick(isl.title, lang) }));
@@ -138,8 +139,8 @@ export function renderLetter({ person, lang, t }) {
     + (person.github ? row('GitHub', externalLink(person.github, 'GitHub')) : '')
     + '</ul>'
     + '<div class="letter-actions">'
-    + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download data-action="cv">${e(t('header.cv'))}</a>`
-    + (person.contactFormKey ? `<button type="button" class="btn btn-outline" data-action="write">✉ ${e(t('contact.write'))}</button>` : '')
+    + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download data-action="cv">${iconCv()}<span>${e(t('header.cv'))}</span></a>`
+    + (person.contactFormKey ? `<button type="button" class="btn btn-outline" data-action="write">${iconWrite()}<span>${e(t('contact.write'))}</span></button>` : '')
     + `<button type="button" class="btn btn-outline" data-action="sail-again">↺ ${e(t('end.again'))}</button>`
     + '</div></div>';
 }

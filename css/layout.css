@@ -11,7 +11,8 @@ body[data-phase="landing"] .brand, body[data-phase="unfold"] .brand { opacity: 0
 .lang-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--parchment); }
 .cv-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; background: var(--ink); color: var(--parchment); font-size: 12px; text-decoration: none; }
 .cv-link:hover { color: var(--card); background: #26385E; }
-.cv-icon { display: none; }
+.icon { flex: none; width: 1.35em; height: 1.35em; }
+.cv-link, .btn { gap: 8px; }
 
 .markers { position: fixed; left: 40px; top: 92px; z-index: 30; display: flex; align-items: center; transition: opacity 0.3s; }
 body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacity: 0; pointer-events: none; visibility: hidden; }
@@ -93,7 +94,6 @@ html, body { overflow-x: clip; }
   .site-header { left: 16px; right: 16px; top: 10px; }
   .brand { font-size: 17px; }
   .cv-text { display: none; }
-  .cv-icon { display: inline; font-size: 16px; }
   .cv-link { width: 44px; justify-content: center; padding: 0; }
   .mode-linear .stage { height: 250px; }
   .mode-linear .leg { scroll-margin-top: 258px; }
