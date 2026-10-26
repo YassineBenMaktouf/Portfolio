@@ -131,6 +131,7 @@ export function renderLetter({ person, lang, t }) {
     + `<p class="letter-kicker">${e(t('end.kicker'))}</p>`
     + `<h2 class="letter-title">${e(t('end.title'))}<br><em>${e(t('end.titleEm'))}</em></h2>`
     + `<p class="letter-sub">${e(t('end.subtitle'))}</p>`
+    + `<p class="title-card-status letter-status"><span class="status-dot" aria-hidden="true"></span>${e(t('landing.status'))}</p>`
     + '<ul class="letter-links">'
     + (email ? row(t('end.email'), `<a href="${e(safeUrl('mailto:' + email))}">${e(email)}</a>`) : '')
     + (person.linkedin ? row('LinkedIn', externalLink(person.linkedin, 'LinkedIn')) : '')
