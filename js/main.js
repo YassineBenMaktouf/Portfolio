@@ -8,6 +8,7 @@ import { chooseMode, BREAKPOINT } from './modes.js';
 import { initLinear } from './linear.js';
 import { createVoyage } from './voyage.js';
 import { ISLANDS } from './layout.js';
+import { initCertModal } from './certmodal.js';
 
 function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
@@ -145,6 +146,8 @@ async function boot() {
   motionQuery.addEventListener('change', onQueryChange);
   // Web fonts change the title card's height; re-measure once they are in.
   document.fonts?.ready.then(() => app.controller.refresh());
+
+  initCertModal({ dialog: document.getElementById('cert-modal'), t: (k, v) => i18n.t(k, v) });
 
   document.getElementById('skip-link').addEventListener('click', (ev) => {
     ev.preventDefault();

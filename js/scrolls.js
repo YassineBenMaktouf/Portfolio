@@ -57,7 +57,12 @@ const RENDERERS = {
     if (item.type === 'certifications') {
       const certs = (item.items || []).map((c) => {
         const name = pick(c.name, lang);
-        const label = c.url && safeUrl(c.url) !== '#' ? externalLink(c.url, name) : e(name);
+        const image = c.image ? safeUrl(c.image) : '#';
+        // An image (the certificate itself) wins over a link: it opens in the on-page viewer.
+        const label = image !== '#'
+          ? `<button type="button" class="cert-open" data-cert-image="${e(image)}" data-cert-title="${e(name)}">${e(name)}`
+            + ` <span class="cert-view">${e(t('cert.view'))}</span></button>`
+          : c.url && safeUrl(c.url) !== '#' ? externalLink(c.url, name) : e(name);
         return `<li><span class="seal" aria-hidden="true"></span><span>${label}`
           + `<small>${e([pick(c.issuer, lang), pick(c.year, lang)].filter(Boolean).join(' · '))}</small></span></li>`;
       }).join('');

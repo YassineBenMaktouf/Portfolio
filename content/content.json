@@ -205,23 +205,23 @@
             { "name": { "en": "Building Transformer-Based NLP Applications", "fr": "Applications NLP à base de Transformers" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=R739A7ejST66L-EK3d58cA" },
             { "name": { "en": "Evaluation and Light Customization of LLMs", "fr": "Évaluation et personnalisation légère des LLM" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=-zjxcLeJQgWU1JebwIFwHw" },
             { "name": { "en": "Applications of AI for Anomaly Detection", "fr": "IA pour la détection d'anomalies" }, "issuer": "NVIDIA DLI", "year": "2025", "url": "https://learn.nvidia.com/certificates?id=CVmW-FSaTSWafbchsKk7Hg" },
-            { "name": { "en": "Hashgraph Developer Course", "fr": "Hashgraph Developer Course" }, "issuer": "The Hashgraph Association", "year": "2025" },
+            { "name": { "en": "Hashgraph Developer Course", "fr": "Hashgraph Developer Course" }, "issuer": "The Hashgraph Association", "year": "2025", "image": "img/certs/hashgraph.webp" },
             { "name": { "en": "Machine Learning with Python", "fr": "Machine Learning avec Python" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/VHFKYK85TDWB" },
             { "name": { "en": "Deep Learning & Neural Networks with Keras", "fr": "Deep Learning et réseaux de neurones avec Keras" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/UYDTYP99UXGH" },
             { "name": { "en": "Introduction to Artificial Intelligence", "fr": "Introduction à l'intelligence artificielle" }, "issuer": "IBM · Coursera", "year": "2024", "url": "https://coursera.org/verify/F8AA45L6P998" },
-            { "name": { "en": "CCNA: Introduction to Networks", "fr": "CCNA : Introduction aux réseaux" }, "issuer": "Cisco", "year": "2024" }
+            { "name": { "en": "CCNA: Introduction to Networks", "fr": "CCNA : Introduction aux réseaux" }, "issuer": "Cisco", "year": "2024", "image": "img/certs/ccna.webp" }
           ]
         },
         {
           "type": "certifications",
           "title": { "en": "Awards & involvement", "fr": "Distinctions & engagement" },
           "items": [
-            { "name": { "en": "1st place · Special AI Models Hack", "fr": "1re place · Special AI Models Hack" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.me/certificate/6GZBWIV73IMO" },
-            { "name": { "en": "2nd place · ChatHack", "fr": "2e place · ChatHack" }, "issuer": "lablab.ai", "year": "2023", "url": "https://lablab.me/certificate/IJXXCZB84JSE" },
-            { "name": { "en": "GPT-4 App Creation & Evals Hackathon", "fr": "Hackathon GPT-4 App Creation & Evals" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.ai/certificate/N419BXCRVGJ8" },
-            { "name": { "en": "Build Your Custom GPTs · 24-hour hackathon", "fr": "Build Your Custom GPTs · hackathon de 24 h" }, "issuer": "lablab.ai", "year": "2024", "url": "https://lablab.ai/certificate/04OD1UJJM5RV" },
-            { "name": { "en": "12th Bal des Projets · medical documents AI platform", "fr": "12e Bal des Projets · plateforme IA documents médicaux" }, "issuer": "ESPRIT", "year": "2025" },
-            { "name": { "en": "NASA International Space Apps Challenge", "fr": "NASA International Space Apps Challenge" }, "issuer": "NASA", "year": "2024" },
+            { "name": { "en": "1st place · Special AI Models Hack", "fr": "1re place · Special AI Models Hack" }, "issuer": "lablab.ai", "year": "2024", "image": "img/certs/special-ai-models-hack.webp" },
+            { "name": { "en": "2nd place · ChatHack", "fr": "2e place · ChatHack" }, "issuer": "lablab.ai", "year": "2023", "image": "img/certs/chathack.webp" },
+            { "name": { "en": "GPT-4 App Creation & Evals Hackathon", "fr": "Hackathon GPT-4 App Creation & Evals" }, "issuer": "lablab.ai", "year": "2024", "image": "img/certs/gpt4-evals-hackathon.webp" },
+            { "name": { "en": "Build Your Custom GPTs · 24-hour hackathon", "fr": "Build Your Custom GPTs · hackathon de 24 h" }, "issuer": "lablab.ai", "year": "2024", "image": "img/certs/custom-gpts-hackathon.webp" },
+            { "name": { "en": "12th Bal des Projets · medical documents AI platform", "fr": "12e Bal des Projets · plateforme IA documents médicaux" }, "issuer": "ESPRIT", "year": "2025", "image": "img/certs/bal-des-projets.webp" },
+            { "name": { "en": "NASA International Space Apps Challenge", "fr": "NASA International Space Apps Challenge" }, "issuer": "NASA", "year": "2024", "image": "img/certs/nasa-space-apps.webp" },
             { "name": { "en": "Secretary General · ATAST Association", "fr": "Secrétaire général · Association ATAST" }, "issuer": "ATAST", "year": "2023 – 2024" },
             { "name": { "en": "Member · IEEE", "fr": "Membre · IEEE" }, "issuer": "IEEE", "year": "2023 – 2024" }
           ]

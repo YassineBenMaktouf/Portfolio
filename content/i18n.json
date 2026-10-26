@@ -31,7 +31,10 @@
     "end.subtitle": "Open to actuarial & data science roles.",
     "end.email": "Email",
     "end.again": "Sail again",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cert.view": "view",
+    "cert.close": "Close certificate",
+    "cert.alt": "Certificate: {title}"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -65,6 +68,9 @@
     "end.subtitle": "Ouvert aux postes en actuariat et data science.",
     "end.email": "E-mail",
     "end.again": "Repartir",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cert.view": "voir",
+    "cert.close": "Fermer le certificat",
+    "cert.alt": "Certificat : {title}"
   }
 }

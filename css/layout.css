@@ -112,3 +112,23 @@ html, body { overflow-x: clip; }
   .title-card-kicker { font-size: 19px; }
   .letter-title { font-size: 34px; }
 }
+
+/* ---- certificate viewer ---- */
+html.modal-open { overflow: hidden; }
+.cert-modal { padding: 0; border: 0; background: transparent; max-width: min(920px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: visible; }
+.cert-modal::backdrop { background: rgba(28, 43, 74, 0.72); }
+.cert-modal-card { position: relative; background: var(--paper); border: 1.5px solid var(--ink); padding: 10px; box-shadow: 0 30px 60px rgba(28, 43, 74, 0.35); }
+.cert-modal-figure { margin: 0; border: 0.8px solid var(--brass); padding: 18px 18px 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cert-modal-figure img { display: block; max-width: 100%; max-height: calc(100vh - 170px); width: auto; height: auto; object-fit: contain; border: 1px solid var(--rule-paper); background: var(--card); }
+.cert-modal-title { font-family: var(--font-display); font-style: italic; font-size: 19px; text-align: center; color: var(--ink-name); }
+.cert-modal-close { position: absolute; top: -16px; right: -16px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--seal); color: #E9C9B0; box-shadow: inset 0 0 0 4px #74222A, 0 4px 10px rgba(28, 43, 74, 0.3); font-family: var(--font-display); font-size: 24px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.cert-modal-close:hover { background: #74222A; }
+.cert-modal[open] .cert-modal-card { animation: cert-unroll 0.28s ease-out; }
+@keyframes cert-unroll { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cert-modal[open] .cert-modal-card { animation: none; } }
+@media (max-width: 767px) {
+  .cert-modal-figure { padding: 10px 10px 8px; }
+  .cert-modal-figure img { max-height: calc(100vh - 140px); }
+  .cert-modal-close { top: -12px; right: -8px; }
+  .cert-modal-title { font-size: 16px; }
+}

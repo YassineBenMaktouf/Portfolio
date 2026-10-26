@@ -40,3 +40,7 @@
 .stub-rollers::after { bottom: 0; }
 .stub-rollers .seal { position: absolute; left: 88px; top: 3px; width: 24px; height: 24px; z-index: 1; }
 .certs a { color: inherit; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+.cert-open { display: inline; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+.cert-open:hover { color: var(--brass-dark); }
+.cert-view { display: inline-block; margin-left: 6px; padding: 1px 6px; border: 1px solid var(--brass); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dark); text-decoration: none; vertical-align: 2px; }
+.cert-open:hover .cert-view { background: var(--brass); color: var(--paper); }
