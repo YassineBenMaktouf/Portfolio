@@ -49,7 +49,14 @@
     "contact.subject": "Portfolio message from {name}",
     "contact.err.name": "Enter your name",
     "contact.err.email": "Enter a valid email address",
-    "contact.err.message": "Write a message"
+    "contact.err.message": "Write a message",
+    "cv.kicker": "Six charts, one sailor",
+    "cv.title": "Choose a CV",
+    "cv.english": "English",
+    "cv.french": "Français",
+    "cv.download": "Download PDF",
+    "cv.close": "Close the CV chooser",
+    "cv.previewAlt": "Preview of the {label} CV"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -101,6 +108,13 @@
     "contact.subject": "Message du portfolio de {name}",
     "contact.err.name": "Indiquez votre nom",
     "contact.err.email": "Indiquez une adresse e-mail valide",
-    "contact.err.message": "Écrivez un message"
+    "contact.err.message": "Écrivez un message",
+    "cv.kicker": "Six cartes, un seul marin",
+    "cv.title": "Choisissez un CV",
+    "cv.english": "English",
+    "cv.french": "Français",
+    "cv.download": "Télécharger le PDF",
+    "cv.close": "Fermer le choix du CV",
+    "cv.previewAlt": "Aperçu du CV {label}"
   }
 }

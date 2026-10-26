@@ -159,3 +159,29 @@ html.modal-open { overflow: hidden; }
   .contact-title { font-size: 26px; }
   .contact-send { align-self: stretch; }
 }
+
+/* ---- CV chooser (reuses the parchment card) ---- */
+.cv-modal { width: min(1040px, calc(100vw - 32px)); max-width: none; }
+.cv-inner { border: 0.8px solid var(--brass); padding: 26px; display: grid; grid-template-columns: minmax(240px, 300px) 1fr; gap: 26px; align-items: start; }
+.cv-side { display: flex; flex-direction: column; gap: 12px; }
+.cv-side .contact-title { text-align: left; }
+.cv-list { display: flex; flex-direction: column; }
+.cv-row { padding: 14px 0; border-top: 1px solid var(--rule-paper); display: flex; flex-direction: column; gap: 8px; }
+.cv-role h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 21px; color: var(--ink); }
+.cv-role p { margin: 2px 0 0; font-family: var(--font-display); font-style: italic; font-size: 14.5px; line-height: 1.35; color: var(--ink-2); }
+.cv-langs { display: flex; gap: 8px; }
+.cv-choice { min-height: 36px; padding: 0 14px; border: 1px solid var(--ink); background: transparent; font-size: 11.5px; letter-spacing: 0.08em; }
+.cv-choice:hover { background: var(--land); }
+.cv-choice[aria-pressed="true"] { background: var(--ink); color: var(--parchment); }
+.cv-preview-wrap { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cv-preview-wrap img { display: block; max-width: 100%; max-height: calc(100vh - 190px); width: auto; height: auto; border: 1px solid var(--rule-paper); background: #fff; box-shadow: 0 12px 28px rgba(28, 43, 74, 0.12); }
+.cv-preview-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cv-preview-bar .btn { gap: 8px; }
+.cv-preview-label { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-name); }
+@media (max-width: 767px) {
+  .cv-inner { grid-template-columns: 1fr; padding: 18px 14px; gap: 14px; }
+  .cv-row { flex-direction: row; align-items: center; justify-content: space-between; padding: 10px 0; }
+  .cv-role p { display: none; }
+  .cv-preview-wrap img { max-height: 46vh; }
+  .cv-preview-bar { justify-content: center; }
+}

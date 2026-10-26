@@ -104,6 +104,25 @@ export function cvHref(person, lang) {
   return raw ? safeUrl(raw) : '#';
 }
 
+// CV chooser: one row per version (role), with an English and a French choice; each choice carries
+// its PDF and its preview image. Unsafe or missing files are left out.
+export function renderCvList({ person, lang, t }) {
+  const langName = { en: t('cv.english'), fr: t('cv.french') };
+  return (person.cvs || []).map((v) => {
+    const role = pick(v.role, lang);
+    const choices = ['en', 'fr'].map((l) => {
+      const file = v.files?.[l] ? safeUrl(v.files[l]) : '#';
+      const preview = v.previews?.[l] ? safeUrl(v.previews[l]) : '#';
+      if (file === '#') return '';
+      return `<button type="button" class="cv-choice" data-cv-file="${e(file)}" data-cv-preview="${e(preview === '#' ? '' : preview)}"`
+        + ` data-cv-label="${e(`${role} · ${langName[l]}`)}" aria-pressed="false">${e(langName[l])}</button>`;
+    }).join('');
+    if (!choices) return '';
+    return `<div class="cv-row"><div class="cv-role"><h3>${e(role)}</h3><p>${e(pick(v.note, lang))}</p></div>`
+      + `<div class="cv-langs">${choices}</div></div>`;
+  }).join('');
+}
+
 export function renderLetter({ person, lang, t }) {
   const email = String(person.email || '').trim();
   const row = (label, href) => `<li><span>${e(label)}</span>${href}</li>`;
@@ -118,7 +137,7 @@ export function renderLetter({ person, lang, t }) {
     + (person.github ? row('GitHub', externalLink(person.github, 'GitHub')) : '')
     + '</ul>'
     + '<div class="letter-actions">'
-    + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download>${e(t('header.cv'))}</a>`
+    + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download data-action="cv">${e(t('header.cv'))}</a>`
     + (person.contactFormKey ? `<button type="button" class="btn btn-outline" data-action="write">✉ ${e(t('contact.write'))}</button>` : '')
     + `<button type="button" class="btn btn-outline" data-action="sail-again">↺ ${e(t('end.again'))}</button>`
     + '</div></div>';

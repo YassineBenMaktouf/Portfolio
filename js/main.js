@@ -10,6 +10,7 @@ import { createVoyage } from './voyage.js';
 import { ISLANDS } from './layout.js';
 import { initCertModal } from './certmodal.js';
 import { initContactModal } from './contactform.js';
+import { initCvModal } from './cvmodal.js';
 
 function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
@@ -149,6 +150,7 @@ async function boot() {
   document.fonts?.ready.then(() => app.controller.refresh());
 
   initCertModal({ dialog: document.getElementById('cert-modal'), t: (k, v) => i18n.t(k, v) });
+  initCvModal({ dialog: document.getElementById('cv-modal'), t: (k, v) => i18n.t(k, v), getPerson: () => content.person, getLang: () => i18n.lang });
   initContactModal({
     dialog: document.getElementById('contact-modal'), t: (k, v) => i18n.t(k, v),
     getAccessKey: () => content.person.contactFormKey, getEmail: () => content.person.email

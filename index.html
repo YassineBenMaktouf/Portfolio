@@ -22,7 +22,7 @@
   <header id="site-header" class="site-header">
     <p id="brand" class="brand">Yassine Ben Maktouf</p>
     <div class="header-actions">
-      <a id="cv-link" class="cv-link" href="#" download>
+      <a id="cv-link" class="cv-link" href="#" download data-action="cv">
         <span class="cv-text" data-i18n="header.cv">Download CV</span>
         <span class="cv-icon" aria-hidden="true">↓</span>
       </a>
@@ -117,6 +117,26 @@
           <button type="submit" id="contact-send" class="btn btn-solid contact-send" data-i18n="contact.send">Send message</button>
         </form>
         <p id="contact-status" class="contact-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="cv-modal" class="cert-modal cv-modal" aria-labelledby="cv-modal-title">
+    <div class="cert-modal-card">
+      <button type="button" id="cv-modal-close" class="cert-modal-close" data-i18n-aria="cv.close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="cv-inner">
+        <div class="cv-side">
+          <p class="letter-kicker" data-i18n="cv.kicker">Six charts, one sailor</p>
+          <h2 id="cv-modal-title" class="contact-title" data-i18n="cv.title">Choose a CV</h2>
+          <div id="cv-modal-list" class="cv-list"></div>
+        </div>
+        <figure class="cv-preview-wrap">
+          <img id="cv-preview" alt="" decoding="async">
+          <figcaption class="cv-preview-bar">
+            <span id="cv-preview-label" class="cv-preview-label"></span>
+            <a id="cv-download" class="btn btn-solid" href="#" download>↓ <span data-i18n="cv.download">Download PDF</span></a>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </dialog>
