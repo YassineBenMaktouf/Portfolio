@@ -1,6 +1,6 @@
 // Sea life: engraved wave marks drift in and out offshore, a tiny fish leaps once in a long while,
 // and clicking open water sends out ink ripples. Everything stays small, rare and out of the way.
-export const AMBIENT = { minDelay: 4000, maxDelay: 8000, fishEvery: 30000, fishChance: 0.5 };
+export const AMBIENT = { minDelay: 2000, maxDelay: 4000, fishEvery: 20000, fishChance: 0.5 };
 const EDGE = 40;   // keep away from the screen edges
 const PAD = 24;    // and this far from islands, cards and panels
 
