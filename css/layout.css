@@ -17,13 +17,13 @@ body[data-phase="landing"] .brand, body[data-phase="unfold"] .brand { opacity: 0
 body[data-phase="landing"] .markers, body[data-phase="unfold"] .markers { opacity: 0; pointer-events: none; visibility: hidden; }
 .markers { transition: opacity 0.3s, visibility 0.3s; }
 .marker { position: relative; display: flex; align-items: center; border: 0; background: transparent; padding: 9px 0; }
-.marker:not(:last-child)::after { content: ''; width: 34px; border-top: 1.5px dashed #8C8266; }
-.marker-dot { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.marker:not(:last-child)::after { content: ''; width: 42px; border-top: 1.5px dashed #8C8266; }
+.marker-dot { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 13px; }
 .marker[data-status="current"] .marker-dot { background: #C49A5A; } /* brass tint: 5.4:1 with ink (plain brass is 4.0:1) */
 .marker[data-status="done"] .marker-dot { background: #D9C9A3; }
 .marker[data-status="done"] .marker-dot::before { content: '✓'; }
 .marker[data-status="done"] .marker-dot { font-size: 0; }
-.marker[data-status="done"] .marker-dot::before { font-size: 11px; }
+.marker[data-status="done"] .marker-dot::before { font-size: 15px; }
 
 .track { position: relative; }
 .stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--parchment); }
@@ -74,7 +74,7 @@ html, body { overflow-x: clip; }
 .mode-linear .label-zoom { opacity: 1; }
 .mode-linear .brand, .mode-linear .markers { opacity: 1 !important; pointer-events: auto !important; visibility: visible !important; }
 /* markers sit inside the bottom edge of the map strip, never over the text below it */
-.mode-linear .markers { position: fixed; top: calc(42vh - 52px); left: 16px; margin: 0; }
+.mode-linear .markers { position: fixed; top: calc(42vh - 62px); left: 16px; margin: 0; }
 .linear { padding: 24px 16px 80px; }
 .linear-hero { display: flex; justify-content: center; padding: 48px 0 24px; }
 .title-card-static { position: relative; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
@@ -97,7 +97,10 @@ html, body { overflow-x: clip; }
   .cv-link { width: 44px; justify-content: center; padding: 0; }
   .mode-linear .stage { height: 250px; }
   .mode-linear .leg { scroll-margin-top: 258px; }
-  .mode-linear .markers { top: 198px; }
+  .mode-linear .markers { top: 196px; }
+  .marker-dot { width: 30px; height: 30px; font-size: 11.5px; }
+  .marker:not(:last-child)::after { width: 30px; }
+  .marker[data-status="done"] .marker-dot::before { font-size: 13px; }
   .linear { padding: 8px 14px 64px; }
   .linear-hero { padding: 40px 0 8px; }
   .leg { padding: 36px 0 16px; gap: 20px; }
