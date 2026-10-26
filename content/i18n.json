@@ -34,7 +34,22 @@
     "contact": "Contact",
     "cert.view": "view",
     "cert.close": "Close certificate",
-    "cert.alt": "Certificate: {title}"
+    "cert.alt": "Certificate: {title}",
+    "contact.write": "Write to me",
+    "contact.kicker": "Message in a bottle",
+    "contact.title": "Send me a message",
+    "contact.name": "Name",
+    "contact.email": "Email",
+    "contact.message": "Message",
+    "contact.send": "Send message",
+    "contact.sending": "Sending your message…",
+    "contact.sent": "Thank you, your message is on its way. I'll reply soon.",
+    "contact.error": "Your message couldn't be sent. Try again, or write to me at {email}.",
+    "contact.close": "Close the form",
+    "contact.subject": "Portfolio message from {name}",
+    "contact.err.name": "Enter your name",
+    "contact.err.email": "Enter a valid email address",
+    "contact.err.message": "Write a message"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -71,6 +86,21 @@
     "contact": "Contact",
     "cert.view": "voir",
     "cert.close": "Fermer le certificat",
-    "cert.alt": "Certificat : {title}"
+    "cert.alt": "Certificat : {title}",
+    "contact.write": "M'écrire",
+    "contact.kicker": "Message dans une bouteille",
+    "contact.title": "Envoyez-moi un message",
+    "contact.name": "Nom",
+    "contact.email": "E-mail",
+    "contact.message": "Message",
+    "contact.send": "Envoyer",
+    "contact.sending": "Envoi de votre message…",
+    "contact.sent": "Merci, votre message est en route. Je vous répondrai rapidement.",
+    "contact.error": "Votre message n'a pas pu être envoyé. Réessayez, ou écrivez-moi à {email}.",
+    "contact.close": "Fermer le formulaire",
+    "contact.subject": "Message du portfolio de {name}",
+    "contact.err.name": "Indiquez votre nom",
+    "contact.err.email": "Indiquez une adresse e-mail valide",
+    "contact.err.message": "Écrivez un message"
   }
 }

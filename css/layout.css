@@ -58,7 +58,7 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
 .letter-links li { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule-paper); }
 .letter-links li span { color: var(--brass-dark); }
 .letter-links a { display: inline-block; padding: 12px 0; }
-.letter-actions { display: flex; gap: 10px; margin-top: 10px; }
+.letter-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
 .btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; font-size: 12px; text-decoration: none; }
 .btn-solid { background: var(--ink); color: var(--parchment); border: 1px solid var(--ink); }
 .btn-outline { background: transparent; border: 1px solid var(--ink); }
@@ -131,4 +131,30 @@ html.modal-open { overflow: hidden; }
   .cert-modal-figure img { max-height: calc(100vh - 140px); }
   .cert-modal-close { top: -12px; right: -8px; }
   .cert-modal-title { font-size: 16px; }
+}
+
+/* ---- contact form (reuses the parchment card of the certificate viewer) ---- */
+.contact-modal { width: min(520px, calc(100vw - 32px)); }
+.contact-inner { border: 0.8px solid var(--brass); padding: 30px 30px 24px; display: flex; flex-direction: column; gap: 14px; }
+.contact-inner .letter-kicker { text-align: center; }
+.contact-title { margin: 0 0 4px; font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1.05; text-align: center; color: var(--ink); }
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+.contact-form[hidden] { display: none !important; }
+.contact-field { display: flex; flex-direction: column; gap: 4px; }
+.contact-field label { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-dark); }
+.contact-field input, .contact-field textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); font-family: var(--font-display); font-size: 17px; line-height: 1.4; border-radius: 0; }
+.contact-field textarea { resize: vertical; min-height: 120px; }
+.contact-field input:focus-visible, .contact-field textarea:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; border-color: var(--brass); }
+.contact-field [aria-invalid="true"] { border-color: var(--seal); }
+.contact-error { min-height: 1em; font-size: 11px; color: var(--seal); }
+.contact-send { align-self: flex-end; justify-content: center; min-width: 160px; }
+.contact-send:disabled { opacity: 0.6; cursor: wait; }
+.contact-status { margin: 0; font-family: var(--font-display); font-size: 17px; text-align: center; color: var(--ink-2); }
+.contact-status:empty { display: none; }
+.contact-status.is-sent { font-style: italic; color: var(--ink); padding: 18px 0 8px; }
+.contact-status.is-error { color: var(--seal); }
+@media (max-width: 767px) {
+  .contact-inner { padding: 22px 16px 18px; }
+  .contact-title { font-size: 26px; }
+  .contact-send { align-self: stretch; }
 }

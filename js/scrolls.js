@@ -119,6 +119,7 @@ export function renderLetter({ person, lang, t }) {
     + '</ul>'
     + '<div class="letter-actions">'
     + `<a class="btn btn-solid" href="${e(cvHref(person, lang))}" download>${e(t('header.cv'))}</a>`
+    + (person.contactFormKey ? `<button type="button" class="btn btn-outline" data-action="write">✉ ${e(t('contact.write'))}</button>` : '')
     + `<button type="button" class="btn btn-outline" data-action="sail-again">↺ ${e(t('end.again'))}</button>`
     + '</div></div>';
 }

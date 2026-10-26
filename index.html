@@ -91,6 +91,36 @@
     </div>
   </dialog>
 
+  <dialog id="contact-modal" class="cert-modal contact-modal" aria-labelledby="contact-title">
+    <div class="cert-modal-card">
+      <button type="button" id="contact-modal-close" class="cert-modal-close" data-i18n-aria="contact.close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="contact-inner">
+        <p class="letter-kicker" data-i18n="contact.kicker">Message in a bottle</p>
+        <h2 id="contact-title" class="contact-title" data-i18n="contact.title">Send me a message</h2>
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="contact-field">
+            <label for="contact-name" data-i18n="contact.name">Name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" aria-describedby="contact-name-error">
+            <span id="contact-name-error" class="contact-error"></span>
+          </div>
+          <div class="contact-field">
+            <label for="contact-email" data-i18n="contact.email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="200" aria-describedby="contact-email-error">
+            <span id="contact-email-error" class="contact-error"></span>
+          </div>
+          <div class="contact-field">
+            <label for="contact-message" data-i18n="contact.message">Message</label>
+            <textarea id="contact-message" name="message" rows="6" maxlength="5000" aria-describedby="contact-message-error"></textarea>
+            <span id="contact-message-error" class="contact-error"></span>
+          </div>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden>
+          <button type="submit" id="contact-send" class="btn btn-solid contact-send" data-i18n="contact.send">Send message</button>
+        </form>
+        <p id="contact-status" class="contact-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </dialog>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="js/main.js"></script>

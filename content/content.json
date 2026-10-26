@@ -4,6 +4,7 @@
     "role": { "en": "Actuary · Data Scientist", "fr": "Actuaire · Data Scientist" },
     "photo": "img/portrait.png",
     "email": "benmaktoufyassine@gmail.com",
+    "contactFormKey": "",
     "linkedin": "https://www.linkedin.com/in/yassine-ben-maktouf/",
     "github": "https://github.com/YassineBenMaktouf",
     "cv": { "en": "cv/CV-Yassine-Ben-Maktouf-EN.pdf", "fr": "cv/CV-Yassine-Ben-Maktouf-FR.pdf" }
