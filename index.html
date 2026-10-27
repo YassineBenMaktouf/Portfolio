@@ -15,8 +15,13 @@
   <link rel="stylesheet" href="css/chart.css">
   <link rel="stylesheet" href="css/scroll.css">
   <link rel="stylesheet" href="css/layout.css">
+  <script>try{document.documentElement.classList.add(sessionStorage.getItem('voyage-loader-seen')?'no-loader':'loading')}catch(e){document.documentElement.classList.add('loading')}</script>
 </head>
 <body class="mode-voyage" data-phase="landing">
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <svg class="helm" viewBox="-75 -75 150 150" width="150" height="150" aria-hidden="true" focusable="false"><g class="helm-spokes" stroke-linecap="round"><line x1="0" y1="0" x2="56.0" y2="0.0"/><line x1="0" y1="0" x2="39.6" y2="39.6"/><line x1="0" y1="0" x2="0.0" y2="56.0"/><line x1="0" y1="0" x2="-39.6" y2="39.6"/><line x1="0" y1="0" x2="-56.0" y2="0.0"/><line x1="0" y1="0" x2="-39.6" y2="-39.6"/><line x1="0" y1="0" x2="-0.0" y2="-56.0"/><line x1="0" y1="0" x2="39.6" y2="-39.6"/></g><g class="helm-handles"><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(63.0 0.0) rotate(90)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(44.5 44.5) rotate(135)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(0.0 63.0) rotate(180)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(-44.5 44.5) rotate(225)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(-63.0 0.0) rotate(270)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(-44.5 -44.5) rotate(315)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(-0.0 -63.0) rotate(360)"/><rect x="-4" y="-9" width="8" height="18" rx="4" transform="translate(44.5 -44.5) rotate(405)"/></g><circle class="helm-rim" r="42"/><circle class="helm-rim-line" r="37"/><circle class="helm-rim-line" r="47"/><circle class="helm-hub" r="13"/><circle class="helm-boss" r="6"/></svg>
+    <p class="loader-caption"><span data-i18n="loader.caption">Taking the helm</span></p>
+  </div>
   <a id="skip-link" class="skip-link" href="#linear" data-i18n="skip">Skip to content</a>
 
   <header id="site-header" class="site-header">

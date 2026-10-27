@@ -13,10 +13,23 @@ import { initContactModal } from './contactform.js';
 import { initCvModal } from './cvmodal.js';
 import { initTour } from './tour.js';
 import { initSeaFx } from './seafx.js';
+import { initLoader } from './loader.js';
 
 function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
 }
+
+function getSessionStorage() {
+  try { return window.sessionStorage; } catch { return null; }
+}
+
+let markReady = () => {};
+const loader = initLoader({
+  el: document.getElementById('loader'),
+  storage: safeStorage(getSessionStorage()),
+  reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  ready: new Promise((resolve) => { markReady = resolve; })
+});
 
 function titlesFor(content, lang) {
   return Object.fromEntries(content.islands.map((isl) => [isl.id, pick(isl.title, lang)]));
@@ -182,10 +195,13 @@ async function boot() {
     }
   });
   window.__voyage = app;
+  // the site is built; let the loader go once the fonts are in too
+  (document.fonts?.ready ?? Promise.resolve()).then(() => markReady());
 }
 
 boot().catch((err) => {
   console.error(err);
+  loader.hide();
   // Never strand a visitor on the landing card: show whatever content was rendered as a plain page.
   document.body.classList.add('boot-failed');
   document.body.classList.remove('mode-voyage');

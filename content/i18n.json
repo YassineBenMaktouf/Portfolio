@@ -61,7 +61,8 @@
     "tour.play": "Play",
     "tour.pause": "Pause",
     "tour.playAria": "Play the voyage automatically",
-    "tour.pauseAria": "Pause the automatic voyage"
+    "tour.pauseAria": "Pause the automatic voyage",
+    "loader.caption": "Taking the helm"
   },
   "fr": {
     "skip": "Aller au contenu",
@@ -125,6 +126,7 @@
     "tour.play": "Lire",
     "tour.pause": "Pause",
     "tour.playAria": "Lancer la visite automatique",
-    "tour.pauseAria": "Mettre la visite en pause"
+    "tour.pauseAria": "Mettre la visite en pause",
+    "loader.caption": "Prendre la barre"
   }
 }

@@ -223,3 +223,28 @@ html.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .seafx { display: none; } }
 .fx-wake { fill: none; stroke: var(--brass-dark); stroke-width: 1.2; stroke-linecap: round; opacity: 0; animation: fx-wake 1s ease-out forwards; }
 @keyframes fx-wake { 0% { opacity: 0.6; transform: scale(0.6); } 100% { opacity: 0; transform: scale(1.5); } }
+
+/* ---- ship's-wheel loading screen ---- */
+.loader { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  background: radial-gradient(ellipse at center, var(--card) 0%, var(--parchment) 70%); transition: opacity 0.6s ease, visibility 0.6s;
+  animation: loader-failsafe 0s 6s forwards; }
+.loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.no-loader .loader { display: none; }
+html.loading { overflow: hidden; animation: loader-unlock 0s 6s forwards; }
+@keyframes loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+@keyframes loader-unlock { to { overflow: visible; } }
+.helm { overflow: visible; animation: helm-steer 3.2s ease-in-out infinite; }
+.helm-spokes { stroke: var(--roller); stroke-width: 5; }
+.helm-handles { fill: var(--roller); stroke: var(--roller-cap); stroke-width: 1; }
+.helm-rim { fill: none; stroke: var(--roller); stroke-width: 9; }
+.helm-rim-line { fill: none; stroke: var(--roller-cap); stroke-width: 1; }
+.helm-hub { fill: var(--roller-cap); }
+.helm-boss { fill: var(--brass); stroke: #C49A5A; stroke-width: 1.5; }
+@keyframes helm-steer { 0% { transform: rotate(-50deg); } 50% { transform: rotate(70deg); } 100% { transform: rotate(-50deg); } }
+.loader-caption { margin: 0; font-family: var(--font-display); font-style: italic; font-size: 19px; color: var(--ink-2); }
+.loader-caption::after { content: ''; display: inline-block; width: 1.2em; text-align: left; animation: loader-dots 1.6s steps(1) infinite; }
+@keyframes loader-dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75%, 100% { content: '...'; } }
+@media (prefers-reduced-motion: reduce) {
+  .helm, .loader-caption::after { animation: none; }
+  .loader { transition-duration: 0.2s; }
+}
