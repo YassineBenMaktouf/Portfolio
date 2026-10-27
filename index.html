@@ -39,13 +39,15 @@
   </header>
 
   <nav id="markers" class="markers" data-i18n-aria="nav.label" aria-label="Islands">
-    <button type="button" class="marker" data-index="0" data-status="upcoming"><span class="marker-dot">I</span></button>
-    <button type="button" class="marker" data-index="1" data-status="upcoming"><span class="marker-dot">II</span></button>
-    <button type="button" class="marker" data-index="2" data-status="upcoming"><span class="marker-dot">III</span></button>
-    <button type="button" class="marker" data-index="3" data-status="upcoming"><span class="marker-dot">IV</span></button>
-    <button type="button" class="marker" data-index="4" data-status="upcoming"><span class="marker-dot">V</span></button>
+    <button type="button" class="marker" data-index="0" data-status="upcoming"><span class="marker-dot">I<span class="marker-name"></span></span></button>
+    <button type="button" class="marker" data-index="1" data-status="upcoming"><span class="marker-dot">II<span class="marker-name"></span></span></button>
+    <button type="button" class="marker" data-index="2" data-status="upcoming"><span class="marker-dot">III<span class="marker-name"></span></span></button>
+    <button type="button" class="marker" data-index="3" data-status="upcoming"><span class="marker-dot">IV<span class="marker-name"></span></span></button>
+    <button type="button" class="marker" data-index="4" data-status="upcoming"><span class="marker-dot">V<span class="marker-name"></span></span></button>
     <button type="button" id="tour-btn" class="tour-btn" aria-pressed="false" aria-label="Play the voyage automatically"><span class="tour-icon" aria-hidden="true">▶</span><span class="tour-label">Play</span></button>
   </nav>
+  <div id="ribbon" class="ribbon" aria-hidden="true"></div>
+  <a id="seal-fab" class="seal-fab" href="#contact" data-i18n-aria="contact" aria-label="Contact"><span aria-hidden="true">Y</span></a>
 
   <main>
     <div id="track" class="track">

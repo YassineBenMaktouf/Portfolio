@@ -65,28 +65,66 @@ body[data-phase="unfold"] .chart-cta { opacity: 1; }
 .btn-outline { background: transparent; border: 1px solid var(--ink); }
 .letter-static { position: static; transform: none; margin: 60px auto; }
 
-/* ---- linear mode (narrow windows, reduced motion, skip link) ---- */
-/* clip, not hidden: hidden would break the sticky map strip */
+/* ---- the captain's journal: the layout for narrow windows, reduced motion and the skip link ---- */
 html, body { overflow-x: clip; }
-.mode-linear .track { height: auto !important; position: sticky; top: 0; z-index: 6; }
-.mode-linear .stage { position: relative; height: 42vh; border-bottom: 1px solid var(--ink); }
+.ribbon, .seal-fab, .marker-name { display: none; }
+body.mode-linear { --journal-top: 112px; background: var(--card) repeating-linear-gradient(var(--card) 0 27px, #E8DCC0 27px 28px); }
+.mode-linear .track { display: none; }
 .mode-linear #title-card, .mode-linear .landing-cta, .mode-linear .chart-cta, .mode-linear .panel, .mode-linear #letter { display: none; }
-.mode-linear .label-full { opacity: 0; }
-.mode-linear .label-zoom { opacity: 1; }
-.mode-linear .brand, .mode-linear .markers { opacity: 1 !important; pointer-events: auto !important; visibility: visible !important; }
-/* markers sit inside the bottom edge of the map strip, never over the text below it */
-.mode-linear .markers { position: fixed; top: calc(42vh - 62px); left: 16px; margin: 0; }
-.linear { padding: 24px 16px 80px; }
-.linear-hero { display: flex; justify-content: center; padding: 48px 0 24px; }
+.mode-linear .site-header { top: 0; left: 0; right: 0; padding: 12px 16px 8px; background: var(--parchment); }
+.mode-linear .brand { opacity: 1 !important; pointer-events: auto !important; }
+
+/* the island markers become a bar of brass tabs under the header */
+.mode-linear .markers { position: fixed; top: 64px; left: 0; right: 0; margin: 0; padding: 6px 16px 10px; gap: 6px; z-index: 29;
+  background: var(--parchment); border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none;
+  opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+.mode-linear .markers::-webkit-scrollbar { display: none; }
+.mode-linear .marker { flex: none; padding: 0; }
+.mode-linear .marker::after { display: none; }
+.mode-linear .marker .marker-dot { width: auto; height: auto; min-height: 30px; padding: 0 10px; gap: 6px; border-radius: 0; border: 1px solid var(--brass); background: transparent; font-size: 10px; letter-spacing: 0.08em; }
+.mode-linear .marker[data-status="done"] .marker-dot { font-size: 10px; background: transparent; }
+.mode-linear .marker[data-status="done"] .marker-dot::before { content: none; }
+.mode-linear .marker[data-status="current"] .marker-dot { background: var(--ink); color: var(--parchment); border-color: var(--ink); }
+.mode-linear .marker[data-status="current"] .marker-name { display: inline; font-family: var(--font-display); font-style: italic; font-size: 12.5px; letter-spacing: 0; }
+.mode-linear .marker[data-status="current"] .marker-name::before { content: '· '; font-style: normal; }
+.mode-linear .tour-btn { margin-left: auto; flex: none; }
+
+/* the red ribbon bookmark grows as you read (height set by linear.js) */
+.mode-linear .ribbon { display: block; position: fixed; right: 22px; top: calc(var(--journal-top) - 2px); z-index: 28; width: 12px; height: 24px; pointer-events: none;
+  background: var(--seal); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 9px), 0 100%); transition: height 0.15s linear; }
+
+/* the wax seal: a shortcut to the closing letter */
+.mode-linear .seal-fab { display: flex; position: fixed; right: 16px; bottom: 18px; z-index: 30; width: 48px; height: 48px; border-radius: 50%;
+  align-items: center; justify-content: center; background: var(--seal); color: #E9C9B0; font-family: var(--font-display); font-size: 21px; text-decoration: none;
+  box-shadow: inset 0 0 0 4px #74222A, 0 6px 14px rgba(28, 43, 74, 0.3); }
+.mode-linear .seal-fab:hover { background: #74222A; color: #E9C9B0; }
+
+/* journal pages */
+.linear { padding: 24px 16px 96px; }
+.mode-linear .linear { padding-top: calc(var(--journal-top) + 8px); }
+.linear-hero { display: flex; justify-content: center; padding: 24px 0 8px; }
 .title-card-static { position: relative; z-index: 1; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
-.leg { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; display: flex; flex-direction: column; gap: 24px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.leg { max-width: 680px; margin: 0 auto; padding: 36px 0 12px; display: flex; flex-direction: column; gap: 18px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .leg.is-visible, .boot-failed .leg { opacity: 1; transform: none; }
-.mode-linear .leg { scroll-margin-top: calc(42vh + 20px); }
-.leg-title { margin: 0; text-align: center; font-family: var(--font-display); font-weight: 400; font-size: 34px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-name); }
-.leg-num { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; color: var(--brass-dark); }
+.mode-linear .leg { scroll-margin-top: calc(var(--journal-top) + 12px); }
+/* keep the text clear of the ribbon hanging on the right */
+.mode-linear .leg:not(.leg-contact) { padding-right: 30px; }
+.leg-title { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; padding-bottom: 14px; font-family: var(--font-display); font-weight: 400; color: var(--ink);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='8'%3E%3Cpath d='M0 4 q5 -4 10 0 t10 0' fill='none' stroke='%23A8834A'/%3E%3C/svg%3E") left bottom / 20px 8px repeat-x; }
+.leg-num { font-family: var(--font-mono); font-size: 40px; line-height: 1; color: var(--rule); }
+.leg-name { font-style: italic; font-size: 32px; line-height: 1.1; }
+
+/* each item is a journal entry with a brass margin line */
+.entry { display: flex; flex-direction: column; gap: 8px; padding: 2px 0 8px 14px; border-left: 2px solid var(--brass); }
+.entry .scroll-kicker span:first-child { display: none; }
+.entry .scroll-kicker:has(> span:only-child) { display: none; }
+.entry .scroll-title { font-size: 23px; }
+.entry .scroll-lede, .entry .scroll-text { font-size: 16px; line-height: 28px; }
+.entry .points li { line-height: 26px; }
 @media (prefers-reduced-motion: reduce) {
   .leg { transform: none; transition: opacity 0.4s linear; }
   .chart, .scroll-icon { transition: none; }
+  .mode-linear .ribbon { transition: none; }
 }
 
 /* ---- phone ---- */
@@ -95,16 +133,11 @@ html, body { overflow-x: clip; }
   .brand { font-size: 17px; }
   .cv-text { display: none; }
   .cv-link { width: 44px; justify-content: center; padding: 0; }
-  .mode-linear .stage { height: 250px; }
-  .mode-linear .leg { scroll-margin-top: 258px; }
-  .mode-linear .markers { top: 196px; }
-  .marker-dot { width: 30px; height: 30px; font-size: 11.5px; }
-  .marker:not([data-index="4"])::after { width: 30px; }
-  .marker[data-status="done"] .marker-dot::before { font-size: 13px; }
-  .linear { padding: 8px 14px 64px; }
+  .linear { padding-left: 14px; padding-right: 14px; }
   .linear-hero { padding: 40px 0 8px; }
   .leg { padding: 36px 0 16px; gap: 20px; }
-  .leg-title { font-size: 24px; letter-spacing: 0.14em; overflow-wrap: anywhere; }
+  .leg-num { font-size: 32px; }
+  .leg-name { font-size: 26px; overflow-wrap: anywhere; }
   .scroll-content { padding: 20px 18px 22px; }
   .scroll-kicker { letter-spacing: 0.14em; }
   .scroll-title { font-size: 26px; }

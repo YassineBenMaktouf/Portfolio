@@ -34,6 +34,8 @@ function labelMarkers(i18n, content) {
   const meta = islandMeta(content, i18n.lang);
   document.querySelectorAll('#markers .marker').forEach((btn, i) => {
     btn.setAttribute('aria-label', i18n.t('marker.label', { num: ISLANDS[i].num, title: meta[i].title }));
+    const name = btn.querySelector('.marker-name');
+    if (name) name.textContent = meta[i].title;
   });
 }
 

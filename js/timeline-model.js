@@ -87,6 +87,7 @@ export function focusViewBox(island, aspect) {
 
 // Linear-mode map strip: the whole island (with its ripples) centred and fitted.
 export function stripViewBox(island, aspect) {
+  if (!(aspect > 0 && Number.isFinite(aspect))) aspect = 1;   // a hidden or zero-size map
   const halfW = island.R * SX * 1.45;
   const halfH = island.R * SY * 1.45;
   const w = Math.max(2 * halfW, 2 * halfH * aspect);

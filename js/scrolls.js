@@ -149,9 +149,10 @@ export function renderLinear({ content, lang, t }) {
   const meta = islandMeta(content, lang);
   const legs = content.islands.map((isl, i) => {
     const m = meta[i];
-    const scrolls = isl.scrolls.map((item, j) => scrollFrame(renderScroll({ island: m, item, index: j, total: isl.scrolls.length, person: content.person, lang, t }))).join('');
+    const scrolls = isl.scrolls.map((item, j) => `<article class="entry">${renderScroll({ island: m, item, index: j, total: isl.scrolls.length, person: content.person, lang, t })}</article>`).join('');
     return `<section class="leg" id="leg-${m.id}" data-island-index="${i}" aria-labelledby="leg-${m.id}-title">`
-      + `<h2 class="leg-title" id="leg-${m.id}-title"><span class="leg-num">${e(t('island'))} ${m.num}</span>${e(m.title)}</h2>${scrolls}</section>`;
+      + `<h2 class="leg-title" id="leg-${m.id}-title"><span class="leg-num"><span class="sr-only">${e(t('island'))} </span>${m.num}</span>`
+      + `<span class="leg-name">${e(m.title)}</span></h2>${scrolls}</section>`;
   }).join('');
   return legs + `<section class="leg leg-contact" id="leg-contact" data-island-index="contact" aria-label="${e(t('contact'))}">`
     + `<div class="letter letter-static">${renderLetter({ person: content.person, lang, t })}</div></section>`;

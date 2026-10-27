@@ -124,7 +124,7 @@ export function initSeaFx({ stage, layer, getState }) {
     const sinceFish = performance.now() - lastFish;
     const next = nextAmbient(Math.random, sinceFish);
     later(next.delay, () => {
-      if (canAnimate(getState())) {
+      if (canAnimate(getState()) && layer.clientWidth > 0) {
         const area = { width: layer.clientWidth, height: layer.clientHeight };
         const avoid = avoidRects();
         for (let i = 0; i < next.count; i++) {
