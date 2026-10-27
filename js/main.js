@@ -157,12 +157,7 @@ async function boot() {
   app.tour = initTour({ btn: document.getElementById('tour-btn'), t: (k, v) => i18n.t(k, v), getApp: () => app });
   initSeaFx({
     stage: document.getElementById('stage'), layer: document.getElementById('seafx'),
-    getState: () => ({
-      reducedMotion: motionQuery.matches, hidden: document.hidden,
-      modalOpen: document.documentElement.classList.contains('modal-open'),
-      touring: Boolean(app.tour?.isPlaying()),
-      reading: app.mode === 'voyage' && !document.getElementById('panel').classList.contains('is-empty')
-    })
+    getState: () => ({ reducedMotion: motionQuery.matches, hidden: document.hidden })
   });
   initCvModal({ dialog: document.getElementById('cv-modal'), t: (k, v) => i18n.t(k, v), getPerson: () => content.person, getLang: () => i18n.lang });
   initContactModal({

@@ -1,6 +1,7 @@
-// Sea life: engraved wave marks drift in and out offshore, a tiny fish leaps once in a long while,
-// and clicking open water sends out ink ripples. Everything stays small, rare and out of the way.
-export const AMBIENT = { minDelay: 2000, maxDelay: 4000, fishEvery: 20000, fishChance: 0.5 };
+// Sea life: engraved wave marks drift in and out offshore (a few at a time), a tiny fish leaps now
+// and then, a wake follows the moving mouse, and clicking open water sends out ink ripples.
+export const AMBIENT = { minDelay: 2000, maxDelay: 4000, fishEvery: 20000, fishChance: 0.5, maxBurst: 3 };
+export const WAKE = { spacing: 34, minInterval: 70 };   // px between wake waves, and ms
 const EDGE = 40;   // keep away from the screen edges
 const PAD = 24;    // and this far from islands, cards and panels
 
@@ -15,15 +16,27 @@ export function pickOffshorePoint(rand, area, avoid, tries = 12) {
   return null;
 }
 
-// What happens next and when: mostly wave marks, a fish only after a long quiet spell.
+// What happens next and when: mostly wave marks, a fish only after a quiet spell, and 1 to 3
+// effects per round so several can be on the water at once.
 export function nextAmbient(rand, sinceFish) {
   const delay = AMBIENT.minDelay + rand() * (AMBIENT.maxDelay - AMBIENT.minDelay);
   const kind = sinceFish >= AMBIENT.fishEvery && rand() < AMBIENT.fishChance ? 'fish' : 'wave';
-  return { delay, kind };
+  const count = 1 + Math.min(AMBIENT.maxBurst - 1, Math.floor(rand() * AMBIENT.maxBurst));
+  return { delay, kind, count };
 }
 
-export function canAnimate({ reducedMotion, hidden, modalOpen, touring, reading }) {
-  return !(reducedMotion || hidden || modalOpen || touring || reading);
+// The sea keeps moving whatever the visitor is doing; it only rests for reduced motion or a hidden tab.
+export function canAnimate({ reducedMotion, hidden }) {
+  return !(reducedMotion || hidden);
+}
+
+// Mouse wake: given the last wave left behind (anchor) and the pointer now, decide whether to leave
+// another one. Waves are spaced out in distance and time, and point along the movement.
+export function wakeStep(anchor, x, y, now) {
+  if (!anchor) return { emit: false, anchor: { x, y, t: now } };
+  const dx = x - anchor.x, dy = y - anchor.y;
+  if (Math.hypot(dx, dy) < WAKE.spacing || now - anchor.t < WAKE.minInterval) return { emit: false, anchor };
+  return { emit: true, angle: Math.round((Math.atan2(dy, dx) * 180) / Math.PI), anchor: { x, y, t: now } };
 }
 
 const NS = 'http://www.w3.org/2000/svg';
@@ -77,6 +90,14 @@ function droplets(layer, x, y) {
   later(1600, () => s.remove());
 }
 
+export function wakeWave(layer, x, y, angle) {
+  const s = fxSvg(layer, x, y, 40, 40);
+  const g = el('g', { transform: `rotate(${angle + 90})` });
+  g.appendChild(el('path', { class: 'fx-wake', d: 'M-7 -1.5 q7 4 14 0' }));
+  s.appendChild(g);
+  later(1100, () => s.remove());
+}
+
 export function fishLeap(layer, x, y) {
   const s = fxSvg(layer, x, y, 120, 80);
   const fish = el('path', { class: 'fx-fish', d: 'M5 0 q-5 -3 -9 0 q4 3 9 0 M-4 0 l-3 -2.5 l0 5 z' });
@@ -103,9 +124,17 @@ export function initSeaFx({ stage, layer, getState }) {
     const next = nextAmbient(Math.random, sinceFish);
     later(next.delay, () => {
       if (canAnimate(getState())) {
-        const p = pickOffshorePoint(Math.random, { width: layer.clientWidth, height: layer.clientHeight }, avoidRects());
-        if (p && next.kind === 'fish') { fishLeap(layer, p.x, p.y); lastFish = performance.now(); }
-        else if (p) waveMark(layer, p.x, p.y);
+        const area = { width: layer.clientWidth, height: layer.clientHeight };
+        const avoid = avoidRects();
+        for (let i = 0; i < next.count; i++) {
+          const p = pickOffshorePoint(Math.random, area, avoid);
+          if (!p) continue;
+          // stagger the burst a little so they don't all start on the same frame
+          later(i * (300 + Math.random() * 500), () => {
+            if (i === 0 && next.kind === 'fish') { fishLeap(layer, p.x, p.y); lastFish = performance.now(); }
+            else waveMark(layer, p.x, p.y);
+          });
+        }
       }
       tick();
     });
@@ -115,8 +144,21 @@ export function initSeaFx({ stage, layer, getState }) {
   // A click on open water (not on an island, card, panel, link or button) sends out ripples.
   stage.addEventListener('click', (ev) => {
     if (ev.target.closest('.island, a, button, #title-card, #panel, #letter')) return;
-    if (!canAnimate({ ...getState(), reading: false, touring: false })) return;
+    if (!canAnimate(getState())) return;
     const base = layer.getBoundingClientRect();
     ripples(layer, ev.clientX - base.left, ev.clientY - base.top);
   });
+
+  // A wake follows the moving mouse over open water (mouse only: touch has no hovering pointer).
+  let anchor = null;
+  stage.addEventListener('pointermove', (ev) => {
+    if (ev.pointerType !== 'mouse' || !canAnimate(getState())) return;
+    if (ev.target.closest('.island, a, button, #title-card, #panel, #letter')) { anchor = null; return; }
+    const base = layer.getBoundingClientRect();
+    const x = ev.clientX - base.left, y = ev.clientY - base.top;
+    const step = wakeStep(anchor, x, y, performance.now());
+    anchor = step.anchor;
+    if (step.emit) wakeWave(layer, x, y, step.angle);
+  });
+  stage.addEventListener('pointerleave', () => { anchor = null; });
 }
