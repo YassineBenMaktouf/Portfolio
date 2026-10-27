@@ -19,14 +19,9 @@ function getLocalStorage() {
   try { return window.localStorage; } catch { return null; }
 }
 
-function getSessionStorage() {
-  try { return window.sessionStorage; } catch { return null; }
-}
-
 let markReady = () => {};
 const loader = initLoader({
   el: document.getElementById('loader'),
-  storage: safeStorage(getSessionStorage()),
   reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   ready: new Promise((resolve) => { markReady = resolve; })
 });

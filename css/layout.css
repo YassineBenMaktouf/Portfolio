@@ -229,7 +229,6 @@ html.modal-open { overflow: hidden; }
   background: radial-gradient(ellipse at center, var(--card) 0%, var(--parchment) 70%); transition: opacity 0.6s ease, visibility 0.6s;
   animation: loader-failsafe 0s 6s forwards; }
 .loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
-.no-loader .loader { display: none; }
 html.loading { overflow: hidden; animation: loader-unlock 0s 6s forwards; }
 @keyframes loader-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 @keyframes loader-unlock { to { overflow: visible; } }
