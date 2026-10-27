@@ -61,11 +61,19 @@ function iconMarkup([x, y], j) {
     + '</g>';
 }
 
+const RIPPLE_SECONDS = 8;   // one ring's trip from the shore out to sea (keep in step with chart.css)
+
 function islandMarkup(island, title, count, islandWord) {
   const ripples = [3, 2, 1].map((j) => `<path class="ripple" d="${blobPath(island.cx, island.cy, island.R + j * 11, island.k, SX, SY)}" opacity="${(0.2 + 0.1 * (3 - j)).toFixed(2)}"/>`).join('');
+  // Rings that form at the shore and drift out to sea (CSS animates them; the still rings above are the
+  // reduced-motion version). Each island starts at its own point in the cycle so they never pulse together.
+  const start = island.R + 4, reach = island.R + 46;
+  const phase = ((island.cx * 7 + island.cy * 3) % 80) / 10;
+  const flows = [0, 1, 2, 3].map((i) => `<path class="ripple-flow" d="${blobPath(island.cx, island.cy, start, island.k, SX, SY)}"`
+    + ` style="--grow:${(reach / start).toFixed(3)};animation-delay:-${(i * RIPPLE_SECONDS / 4 + phase).toFixed(2)}s"/>`).join('');
   const coast = `<path class="coast" d="${blobPath(island.cx, island.cy, island.R, island.k, SX, SY)}"/>`;
   const icons = islandScrollSlots(island, count).map(iconMarkup).join('');
-  return `<g class="island" data-island="${island.id}">${ripples}${coast}<g class="labels">${labelsMarkup(island, title, islandWord)}</g><g class="icons">${icons}</g></g>`;
+  return `<g class="island" data-island="${island.id}">${ripples}${flows}${coast}<g class="labels">${labelsMarkup(island, title, islandWord)}</g><g class="icons">${icons}</g></g>`;
 }
 
 const COMPASS_MARKUP = `<g class="compass" transform="translate(${COMPASS.x} ${COMPASS.y})">`
