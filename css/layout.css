@@ -104,8 +104,10 @@ body.mode-linear { --journal-top: 112px; background: var(--card) repeating-linea
 .mode-linear .linear { padding-top: calc(var(--journal-top) + 8px); }
 .linear-hero { display: flex; justify-content: center; padding: 24px 0 8px; }
 .title-card-static { position: relative; z-index: 1; transform: none !important; left: auto !important; top: auto !important; width: min(660px, 100%); }
-.leg { max-width: 680px; margin: 0 auto; padding: 36px 0 12px; display: flex; flex-direction: column; gap: 18px; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.leg.is-visible, .boot-failed .leg { opacity: 1; transform: none; }
+.leg { max-width: 680px; margin: 0 auto; padding: 36px 0 12px; display: flex; flex-direction: column; gap: 18px; }
+/* titles and entries fade in as they come on screen and out as they leave, scrolling either way (linear.js) */
+.mode-linear :is(.linear-hero, .leg-title, .entry, .letter-static) { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.mode-linear :is(.linear-hero, .leg-title, .entry, .letter-static).is-visible, .boot-failed :is(.linear-hero, .leg-title, .entry, .letter-static) { opacity: 1; transform: none; }
 .mode-linear .leg { scroll-margin-top: calc(var(--journal-top) + 12px); }
 /* keep the text clear of the ribbon hanging on the right */
 .mode-linear .leg:not(.leg-contact) { padding-right: 30px; }
@@ -122,7 +124,7 @@ body.mode-linear { --journal-top: 112px; background: var(--card) repeating-linea
 .entry .scroll-lede, .entry .scroll-text { font-size: 16px; line-height: 28px; }
 .entry .points li { line-height: 26px; }
 @media (prefers-reduced-motion: reduce) {
-  .leg { transform: none; transition: opacity 0.4s linear; }
+  .mode-linear :is(.linear-hero, .leg-title, .entry, .letter-static) { opacity: 1; transform: none; transition: none; }
   .chart, .scroll-icon { transition: none; }
   .mode-linear .ribbon { transition: none; }
 }

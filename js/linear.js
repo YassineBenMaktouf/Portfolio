@@ -10,6 +10,23 @@ export function ribbonLength(progress, max = 360, min = 24) {
   return Math.round(min + p * (max - min));
 }
 
+// The address follows the section being read, so a reload or a shared link lands in the same place.
+export function hashForKey(key, ids) {
+  if (key === 'contact') return '#contact';
+  if (typeof key === 'number' && ids[key]) return `#${ids[key]}`;
+  return '';
+}
+
+// Is an element on screen (below the fixed header and tabs, with a small margin)? Checked in both
+// scroll directions, so entries fade in when they arrive and out again when they leave.
+export const REVEAL_MARGIN = 40;
+export function isInView(rect, viewportHeight, top = 0, margin = REVEAL_MARGIN) {
+  return rect.top < viewportHeight - margin && rect.bottom > top + margin;
+}
+
+const IDS = ISLANDS.map((isl) => isl.id);
+const REVEAL = '.linear-hero, .leg-title, .entry, .letter-static';
+
 export function initLinear({ stage, svg, linearEl, card, onIsland }) {
   const ribbon = document.getElementById('ribbon');
   const hero = card.cloneNode(true);
@@ -51,21 +68,24 @@ export function initLinear({ stage, svg, linearEl, card, onIsland }) {
     let key = null;
     linearEl.querySelectorAll('.leg').forEach((leg) => {
       if (leg.getBoundingClientRect().top <= line) {
-        leg.classList.add('is-visible');
         const raw = leg.dataset.islandIndex;
         key = raw === 'contact' ? 'contact' : Number(raw);
       }
     });
+    const top = parseFloat(getComputedStyle(document.body).getPropertyValue('--journal-top')) || 0;
+    linearEl.querySelectorAll(REVEAL).forEach((el) => {
+      el.classList.toggle('is-visible', isInView(el.getBoundingClientRect(), window.innerHeight, top));
+    });
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     if (ribbon) ribbon.style.height = `${ribbonLength(scrollable > 0 ? window.scrollY / scrollable : 0)}px`;
     const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    if (atBottom) {
-      linearEl.querySelectorAll('.leg').forEach((leg) => leg.classList.add('is-visible'));
-      key = 'contact';
-    }
+    if (atBottom) key = 'contact';
     if (key !== activeKey) {
+      // the first pass only reads the page: a link's #section is left for the navigation to honour
+      const first = activeKey === undefined;
       activeKey = key;
       focusOn(key);
+      if (!first) history.replaceState(null, '', hashForKey(key, IDS) || location.pathname + location.search);
     }
   };
   const onScroll = () => {
@@ -77,7 +97,7 @@ export function initLinear({ stage, svg, linearEl, card, onIsland }) {
   update();
   return {
     // Called after #linear is re-rendered (language switch): re-mark the new sections.
-    refresh() { activeKey = undefined; update(); },
+    refresh() { update(); },
     destroy() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
