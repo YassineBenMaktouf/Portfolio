@@ -38,6 +38,13 @@ export function createI18n(ui, lang) {
 }
 
 export function applyI18n(root, t) {
-  root.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
-  root.querySelectorAll('[data-i18n-aria]').forEach((el) => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
+  // A missing translation comes back as its own key: keep the text already in the page instead.
+  root.querySelectorAll('[data-i18n]').forEach((el) => {
+    const text = t(el.dataset.i18n);
+    if (text !== el.dataset.i18n) el.textContent = text;
+  });
+  root.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+    const label = t(el.dataset.i18nAria);
+    if (label !== el.dataset.i18nAria) el.setAttribute('aria-label', label);
+  });
 }

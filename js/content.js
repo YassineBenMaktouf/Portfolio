@@ -28,7 +28,9 @@ export function validateContent(data) {
 }
 
 async function fetchJSON(url) {
-  const res = await fetch(url);
+  // revalidate every time (cheap: an unchanged file answers 304) so a fresh deploy never mixes
+  // a new page with an old cached copy of the content or the translations
+  const res = await fetch(url, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Could not load ${url} (${res.status})`);
   return res.json();
 }
