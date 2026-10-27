@@ -1,6 +1,6 @@
 // Sea life: engraved wave marks drift in and out offshore (a few at a time), a tiny fish leaps now
 // and then, a wake follows the moving mouse, and clicking open water sends out ink ripples.
-export const AMBIENT = { minDelay: 2000, maxDelay: 4000, fishEvery: 20000, fishChance: 0.5, maxBurst: 3 };
+export const AMBIENT = { minDelay: 2000, maxDelay: 4000, fishEvery: 20000, fishChance: 0.5, minBurst: 8, maxBurst: 12 };
 export const WAKE = { spacing: 34, minInterval: 70 };   // px between wake waves, and ms
 const EDGE = 40;   // keep away from the screen edges
 const PAD = 24;    // and this far from islands, cards and panels
@@ -16,12 +16,13 @@ export function pickOffshorePoint(rand, area, avoid, tries = 12) {
   return null;
 }
 
-// What happens next and when: mostly wave marks, a fish only after a quiet spell, and 1 to 3
-// effects per round so several can be on the water at once.
+// What happens next and when: mostly wave marks, a fish only after a quiet spell, and about ten
+// effects per round (8 to 12) so the whole sea is alive.
 export function nextAmbient(rand, sinceFish) {
   const delay = AMBIENT.minDelay + rand() * (AMBIENT.maxDelay - AMBIENT.minDelay);
   const kind = sinceFish >= AMBIENT.fishEvery && rand() < AMBIENT.fishChance ? 'fish' : 'wave';
-  const count = 1 + Math.min(AMBIENT.maxBurst - 1, Math.floor(rand() * AMBIENT.maxBurst));
+  const span = AMBIENT.maxBurst - AMBIENT.minBurst + 1;
+  const count = AMBIENT.minBurst + Math.min(span - 1, Math.floor(rand() * span));
   return { delay, kind, count };
 }
 
@@ -129,8 +130,8 @@ export function initSeaFx({ stage, layer, getState }) {
         for (let i = 0; i < next.count; i++) {
           const p = pickOffshorePoint(Math.random, area, avoid);
           if (!p) continue;
-          // stagger the burst a little so they don't all start on the same frame
-          later(i * (300 + Math.random() * 500), () => {
+          // spread the round over its first ~2 s so the splashes ripple across the sea
+          later(i === 0 ? 0 : Math.random() * 2000, () => {
             if (i === 0 && next.kind === 'fish') { fishLeap(layer, p.x, p.y); lastFish = performance.now(); }
             else waveMark(layer, p.x, p.y);
           });
