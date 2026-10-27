@@ -209,7 +209,7 @@
           "type": "skills",
           "title": { "en": "Tools of the trade", "fr": "Outils du métier" },
           "groups": [
-            { "name": { "en": "Programming", "fr": "Programmation" }, "items": ["Python", "R", "SQL", "Java", "JavaScript", "C", "C#"] },
+            { "name": { "en": "Programming", "fr": "Programmation" }, "items": ["Python", "R", "SQL", "Excel", "Java", "JavaScript", "C", "C#"] },
             { "name": { "en": "Frameworks", "fr": "Frameworks" }, "items": ["FastAPI", "Flask", "Spring Boot", ".NET", "React", "Tailwind CSS"] },
             { "name": { "en": "MLOps & data", "fr": "MLOps & données" }, "items": ["Docker", "Kafka", "MLflow", "GitHub Actions", "CI/CD", "SQL Server", "MongoDB", "MySQL", "SQLite"] }
           ]
